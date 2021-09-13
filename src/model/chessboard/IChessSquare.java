@@ -28,6 +28,18 @@ public interface IChessSquare {
   IChessPiece getPiece();
 
   /**
+   * Places the given <code>IChessPiece</code> on the square.
+   * @throws IllegalArgumentException if there is already a piece on the square.
+   * @param pieceToPlace the piece to place on the square.
+   */
+  void placePiece(IChessPiece pieceToPlace) throws IllegalArgumentException;
+
+  /**
+   * Removes the piece on the square, either a capture or move.
+   */
+  void removePiece();
+
+  /**
    * Gets the file, or column, of the square. Indexing starts at 0.
    * @return an integer representing the column.
    */

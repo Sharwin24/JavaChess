@@ -13,4 +13,9 @@ public class Bishop extends AChessPiece {
       IChessSquare startingSquare) {
     super(color, "♝", "♗", startingSquare);
   }
+
+  @Override
+  public List<IChessSquare> possibleMoves() {
+    return null;
+  }
 }
