@@ -40,8 +40,5 @@ public abstract class AChessPiece implements IChessPiece {
   }
 
   @Override
-  public abstract boolean canMoveToSquare(IChessSquare destSquare);
-
-  @Override
   public abstract List<IChessSquare> possibleMoves();
 }

@@ -13,14 +13,4 @@ public class Bishop extends AChessPiece {
       IChessSquare startingSquare) {
     super(color, "♝", "♗", startingSquare);
   }
-
-  @Override
-  public boolean canMoveToSquare(IChessSquare destSquare) {
-    return false;
-  }
-
-  @Override
-  public List<IChessSquare> possibleMoves() {
-    return null;
-  }
 }

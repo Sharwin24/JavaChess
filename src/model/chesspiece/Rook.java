@@ -15,11 +15,6 @@ public class Rook extends AChessPiece {
   }
 
   @Override
-  public boolean canMoveToSquare(IChessSquare destSquare) {
-    return false;
-  }
-
-  @Override
   public List<IChessSquare> possibleMoves() {
     return null;
   }

@@ -9,14 +9,20 @@ import model.chesscolor.EChessColor;
  */
 public class Pawn extends AChessPiece {
 
+  private int moveCounter;
+
   protected Pawn(EChessColor color,
       IChessSquare startingSquare) {
     super(color, "♟", "♙", startingSquare);
+    this.moveCounter = 0;
   }
 
-  @Override
-  public boolean canMoveToSquare(IChessSquare destSquare) {
-    return false;
+  public int getMoveCounter() {
+    return this.moveCounter;
+  }
+
+  public void incrementMoveCounter() {
+    this.moveCounter++;
   }
 
   @Override
