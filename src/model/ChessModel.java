@@ -9,7 +9,7 @@ import model.chesspiece.IChessPiece;
 public class ChessModel implements IChessModel{
 
   @Override
-  public void initBoard() {
+  public void resetBoard() {
 
   }
 
