@@ -1,10 +1,10 @@
 package view;
 
 /**
- * TODO
+ * Interface to represent a textual view for chess
  */
 public interface ITextualChessView {
 
-  void printBoard();
+  void renderBoard();
 
 }
