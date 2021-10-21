@@ -11,6 +11,11 @@ import model.chesspiece.IChessPiece;
 public interface IChessBoard {
 
   /**
+   * Initializes the board with the pieces on their starting squares.
+   */
+  void initBoard();
+
+  /**
    * Obtains the FEN notation of the board. FEN string can be used for printing or
    * can be handed to an external engine such as stockfish for chess AI implementation.
    * @return a String representing the FEN notation for the board.
@@ -23,7 +28,7 @@ public interface IChessBoard {
    * implemented within the model.
    * @return a 2D List of ChessSquare.
    */
-  List<List<IChessSquare>> getBoard();
+  List<List<IChessSquare>> getBoardArray();
 
   /**
    * Determines if a piece can be moved from its current square to the given square.

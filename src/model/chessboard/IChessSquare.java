@@ -36,8 +36,9 @@ public interface IChessSquare {
 
   /**
    * Removes the piece on the square, either a capture or move.
+   * @throws IllegalStateException if the square is empty.
    */
-  void removePiece();
+  void removePiece() throws IllegalStateException;
 
   /**
    * Gets the file, or column, of the square. Indexing starts at 0.

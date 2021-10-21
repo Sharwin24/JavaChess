@@ -17,13 +17,33 @@ public class ChessBoard implements IChessBoard {
     this.enPassantSquares = new ArrayList<>();
   }
 
+  public ChessBoard() {
+    this.chessBoard = this.getResetChessBoardArr();
+    this.enPassantSquares = new ArrayList<>();
+  }
+
+  /**
+   * Returns a 2D Array of <code>IChessSquare</code> of a reset
+   * chess board.
+   * @return a list of list of <code>IChessSquare</code>
+   */
+  private List<List<IChessSquare>> getResetChessBoardArr() {
+    // TODO
+    return null;
+  }
+
+  @Override
+  public void initBoard() {
+    // Sets up the chess board
+  }
+
   @Override
   public String getFENSring() {
     return null;
   }
 
   @Override
-  public List<List<IChessSquare>> getBoard() {
+  public List<List<IChessSquare>> getBoardArray() {
     return this.chessBoard;
   }
 

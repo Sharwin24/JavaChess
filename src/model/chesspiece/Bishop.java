@@ -5,7 +5,7 @@ import model.chessboard.IChessSquare;
 import model.chesscolor.EChessColor;
 
 /**
- * TODO
+ * Class to represent a Bishop. Bishops can move diagonally.
  */
 public class Bishop extends AChessPiece {
 

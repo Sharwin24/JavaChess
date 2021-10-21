@@ -15,6 +15,13 @@ public class ChessSquare implements IChessSquare {
   private final int rank;
   private IChessPiece piece;
 
+  /**
+   * Constructs a <code>ChessSquare</code> given a color and a location by
+   * file and rank. The Square is empty and does not contain a piece.
+   * @param color An <code>EChessColor</code> representing the color of this square
+   * @param file The file or 'column' of this square
+   * @param rank The rank or 'row' of this square
+   */
   public ChessSquare(EChessColor color, int file, int rank) {
     this.color = color;
     this.file = file;
@@ -22,6 +29,13 @@ public class ChessSquare implements IChessSquare {
     this.piece = null;
   }
 
+  /**
+   * Constructs a <code>ChessSquare</code> given a color, location, and piece to start with.
+   * @param color An <code>EChessColor</code> representing the color of this square
+   * @param file The file or 'column' of this square
+   * @param rank The rank or 'row' of this square
+   * @param piece A <code>IChessPiece</code> to start on this square.
+   */
   public ChessSquare(EChessColor color, int file, int rank, IChessPiece piece) {
     this(color, file, rank);
     this.piece = piece;
@@ -52,9 +66,10 @@ public class ChessSquare implements IChessSquare {
 
   @Override
   public void removePiece() {
-    if (this.hasPiece()) {
-      this.piece = null;
+    if (!this.hasPiece()) {
+      throw new IllegalStateException("No piece to remove!");
     }
+    this.piece = null;
   }
 
   @Override

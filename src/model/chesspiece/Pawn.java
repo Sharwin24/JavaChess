@@ -17,6 +17,10 @@ public class Pawn extends AChessPiece {
     this.moveCounter = 0;
   }
 
+  /**
+   * Gets the pawn's move.
+   * @return
+   */
   public int getMoveCounter() {
     return this.moveCounter;
   }
