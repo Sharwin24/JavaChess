@@ -11,7 +11,7 @@ public interface IChessPiece {
 
   /**
    * Gets the <code>IChessSquare</code> the piece is on.
-   * @return
+   * @return a <code>IChessSquare</code> object
    */
   IChessSquare getSquare();
 

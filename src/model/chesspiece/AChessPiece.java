@@ -7,28 +7,31 @@ import model.chessboard.IChessSquare;
 import model.chesscolor.EChessColor;
 
 /**
- * Abstract class representing methods and attributes all <code>IChessPiece</code>
- * objects have.
+ * Abstract class representing methods and attributes all <code>IChessPiece</code> objects have.
  */
 public abstract class AChessPiece implements IChessPiece {
 
   private final EChessColor pieceColor;
   private final String blackText;
   private final String whiteText;
-  protected IChessSquare currentSquare;
+  private IChessSquare currentSquare; // Square may be mutated for move()
   protected final int file;
   protected final int rank;
 
   /**
-   * Constructs a <code>AChessPiece</code> with a starting square and it's
-   * toString values.
-   * @param color The <code>EChessColor</code> representing the piece's color
-   * @param black The toString for a black version of this piece
-   * @param white The toString for a white version of this piece
+   * Constructs a <code>AChessPiece</code> with a starting square and it's toString values.
+   *
+   * @param color          The <code>EChessColor</code> representing the piece's color
+   * @param black          The toString for a black version of this piece
+   * @param white          The toString for a white version of this piece
    * @param startingSquare The <code>IChessSquare</code> this piece starts on
+   * @throws IllegalArgumentException if any arguments are null or invalid
    */
   protected AChessPiece(EChessColor color, String black, String white,
-      IChessSquare startingSquare) {
+      IChessSquare startingSquare) throws IllegalArgumentException {
+    if (color == null || startingSquare == null) {
+      throw new IllegalArgumentException("Invalid ChessPiece Arguments");
+    }
     this.pieceColor = color;
     this.blackText = black;
     this.whiteText = white;
@@ -65,9 +68,15 @@ public abstract class AChessPiece implements IChessPiece {
 
   @Override
   public boolean equals(Object o) {
-    if ( this == o ) {
+    if (this == o) {
       return true;
     }
-    
+
+    if (o instanceof IChessPiece) {
+      IChessPiece otherPiece = (IChessPiece) o;
+      return otherPiece.getSquare() == this.getSquare() &&
+          otherPiece.hashCode() == this.hashCode();
+    }
+    return false;
   }
 }
