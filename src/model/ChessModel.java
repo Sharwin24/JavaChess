@@ -38,7 +38,9 @@ public class ChessModel implements IChessModel {
 
   @Override
   public void resetBoard() {
-
+    this.chessBoard.initBoard();
+    this.currentPlayerTurn = EChessColor.WHITE;
+    // Reset timer
   }
 
   @Override
