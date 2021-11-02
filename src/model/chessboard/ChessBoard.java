@@ -5,7 +5,7 @@ import java.util.List;
 import model.chesspiece.IChessPiece;
 
 /**
- * TODO
+ * Class representing the ChessBoard and its attributes.
  */
 public class ChessBoard implements IChessBoard {
 
@@ -38,13 +38,27 @@ public class ChessBoard implements IChessBoard {
   }
 
   @Override
-  public String getFENSring() {
+  public boolean isValidBoardArray(List<List<IChessSquare>> boardToValidate) {
+    // TODO: Size 64, Correct colors, ...
+    return false;
+  }
+
+  @Override
+  public String getFENString() {
     return null;
   }
 
   @Override
   public List<List<IChessSquare>> getBoardArray() {
     return this.chessBoard;
+  }
+
+  @Override
+  public IChessSquare getSquare(int file, int rank) throws IndexOutOfBoundsException {
+    if (file <= 0 || file > 8 || rank <= 0 || rank > 8) {
+      throw new IndexOutOfBoundsException("Square position out of bounds!");
+    }
+    return this.chessBoard.get(8 - (rank - 1)).get(file - 1);
   }
 
   @Override

@@ -16,11 +16,18 @@ public interface IChessBoard {
   void initBoard();
 
   /**
+   * Determines if the given board is a legal chess board or not
+   * @param boardToValidate A 2D board array to validate.
+   * @return a boolean whether the given board is valid or not.
+   */
+  boolean isValidBoardArray(List<List<IChessSquare>> boardToValidate);
+
+  /**
    * Obtains the FEN notation of the board. FEN string can be used for printing or
    * can be handed to an external engine such as stockfish for chess AI implementation.
    * @return a String representing the FEN notation for the board.
    */
-  String getFENSring();
+  String getFENString();
 
   /**
    * Gets the ChessBoard. Returns the private member within the implemented
@@ -29,6 +36,19 @@ public interface IChessBoard {
    * @return a 2D List of ChessSquare.
    */
   List<List<IChessSquare>> getBoardArray();
+
+  /**
+   * Gets the <code>IChessSquare</code> at a given file (column) and rank(row).
+   * Treats file and rank as positions on chessboard. For <i>a4</i>, the
+   * parameters (file: 1, rank: 4) should be used.
+   * @param file the file or column as an int, starting from 1. Matches
+   *             the letter of the file, (ex: a -> 1, c -> 3, h -> 8, etc.)
+   *             Range [1,8]
+   * @param rank the rank or row as an int, starting from 1. Range [1,8]
+   * @return a <code>IChessSquare</code> at the given location
+   * @throws IndexOutOfBoundsException if either index is out of bounds
+   */
+  IChessSquare getSquare(int file, int rank) throws IndexOutOfBoundsException;
 
   /**
    * Determines if a piece can be moved from its current square to the given square.

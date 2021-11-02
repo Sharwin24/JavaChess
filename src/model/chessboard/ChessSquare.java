@@ -2,6 +2,7 @@ package model.chessboard;
 
 import model.chesscolor.EChessColor;
 import model.chesspiece.IChessPiece;
+import model.utility.Utils;
 
 /**
  * Implementation of <code>IChessSquare</code>. Represents a Chess Square that is a container for a
@@ -16,11 +17,12 @@ public class ChessSquare implements IChessSquare {
   private IChessPiece piece;
 
   /**
-   * Constructs a <code>ChessSquare</code> given a color and a location by
-   * file and rank. The Square is empty and does not contain a piece.
+   * Constructs a <code>ChessSquare</code> given a color and a location by file and rank. The Square
+   * is empty and does not contain a piece.
+   *
    * @param color An <code>EChessColor</code> representing the color of this square
-   * @param file The file or 'column' of this square
-   * @param rank The rank or 'row' of this square
+   * @param file  The file or 'column' of this square
+   * @param rank  The rank or 'row' of this square
    */
   public ChessSquare(EChessColor color, int file, int rank) {
     this.color = color;
@@ -31,9 +33,10 @@ public class ChessSquare implements IChessSquare {
 
   /**
    * Constructs a <code>ChessSquare</code> given a color, location, and piece to start with.
+   *
    * @param color An <code>EChessColor</code> representing the color of this square
-   * @param file The file or 'column' of this square
-   * @param rank The rank or 'row' of this square
+   * @param file  The file or 'column' of this square
+   * @param rank  The rank or 'row' of this square
    * @param piece A <code>IChessPiece</code> to start on this square.
    */
   public ChessSquare(EChessColor color, int file, int rank, IChessPiece piece) {
@@ -80,5 +83,17 @@ public class ChessSquare implements IChessSquare {
   @Override
   public int getRank() {
     return this.rank;
+  }
+
+  @Override
+  public String toString() {
+    switch (this.color) { // TODO: Print square
+      case BLACK:
+        return "⬛" + Utils.fileLetter(this.file) + this.rank; // Black box
+      case WHITE:
+        return "⬜" + Utils.fileLetter(this.file) + this.rank; // White box
+      default:
+        throw new IllegalArgumentException("Invalid Square Color");
+    }
   }
 }
