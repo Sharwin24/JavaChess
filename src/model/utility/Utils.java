@@ -1,12 +1,12 @@
-package model;
+package model.utility;
 
 import java.util.HashMap;
 
-public class Utility {
+public class Utils {
 
   private static final HashMap<Integer, String> fileMap = new HashMap<>();
 
-  public Utility() {
+  public Utils() {
     fileMap.put(1,"a");
     fileMap.put(2,"b");
     fileMap.put(3,"c");
