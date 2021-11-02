@@ -1,6 +1,7 @@
 package model.chesspiece;
 
 import java.util.List;
+import java.util.Objects;
 import model.chessboard.IChessBoard;
 import model.chessboard.IChessSquare;
 import model.chesscolor.EChessColor;
@@ -15,6 +16,8 @@ public abstract class AChessPiece implements IChessPiece {
   private final String blackText;
   private final String whiteText;
   protected IChessSquare currentSquare;
+  protected final int file;
+  protected final int rank;
 
   /**
    * Constructs a <code>AChessPiece</code> with a starting square and it's
@@ -30,6 +33,8 @@ public abstract class AChessPiece implements IChessPiece {
     this.blackText = black;
     this.whiteText = white;
     this.currentSquare = startingSquare;
+    this.file = startingSquare.getFile();
+    this.rank = startingSquare.getRank();
   }
 
   @Override
@@ -50,10 +55,19 @@ public abstract class AChessPiece implements IChessPiece {
   }
 
   @Override
-  public List<IChessSquare> possibleMoves(IChessBoard chessBoard)
-      throws IllegalStateException {
-    if (chessBoard.)
+  public abstract List<IChessSquare> possibleMoves(IChessBoard chessBoard)
+      throws IllegalStateException;
+
+  @Override
+  public int hashCode() {
+    return Objects.hash(this.file, this.rank, this.blackText, this.whiteText);
   }
 
-  protected abstract List<IChessSquare> possibleMovesLegalBoard(IChessBoard board);
+  @Override
+  public boolean equals(Object o) {
+    if ( this == o ) {
+      return true;
+    }
+    
+  }
 }

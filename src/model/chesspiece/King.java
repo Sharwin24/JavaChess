@@ -14,6 +14,10 @@ public class King extends AChessPiece {
 
   @Override
   public List<IChessSquare> possibleMoves(IChessBoard chessBoard) throws IllegalStateException {
+    if (!chessBoard.getSquare(this.file,this.rank).hasPiece() ||
+        chessBoard.getSquare(this.file,this.rank).getPiece() != this) {
+      throw new IllegalStateException("Invalid board given");
+    }
     return null;
   }
 }
