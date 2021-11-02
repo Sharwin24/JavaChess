@@ -1,11 +1,13 @@
 package model.chesspiece;
 
 import java.util.List;
+import model.chessboard.IChessBoard;
 import model.chessboard.IChessSquare;
 import model.chesscolor.EChessColor;
 
 /**
- * TODO
+ * Abstract class representing methods and attributes all <code>IChessPiece</code>
+ * objects have.
  */
 public abstract class AChessPiece implements IChessPiece {
 
@@ -14,6 +16,14 @@ public abstract class AChessPiece implements IChessPiece {
   private final String whiteText;
   protected IChessSquare currentSquare;
 
+  /**
+   * Constructs a <code>AChessPiece</code> with a starting square and it's
+   * toString values.
+   * @param color The <code>EChessColor</code> representing the piece's color
+   * @param black The toString for a black version of this piece
+   * @param white The toString for a white version of this piece
+   * @param startingSquare The <code>IChessSquare</code> this piece starts on
+   */
   protected AChessPiece(EChessColor color, String black, String white,
       IChessSquare startingSquare) {
     this.pieceColor = color;
@@ -40,5 +50,10 @@ public abstract class AChessPiece implements IChessPiece {
   }
 
   @Override
-  public abstract List<IChessSquare> possibleMoves();
+  public List<IChessSquare> possibleMoves(IChessBoard chessBoard)
+      throws IllegalStateException {
+    if (chessBoard.)
+  }
+
+  protected abstract List<IChessSquare> possibleMovesLegalBoard(IChessBoard board);
 }

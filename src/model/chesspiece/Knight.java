@@ -1,6 +1,7 @@
 package model.chesspiece;
 
 import java.util.List;
+import model.chessboard.IChessBoard;
 import model.chessboard.IChessSquare;
 import model.chesscolor.EChessColor;
 
@@ -15,7 +16,7 @@ public class Knight extends AChessPiece {
   }
 
   @Override
-  public List<IChessSquare> possibleMoves() {
+  public List<IChessSquare> possibleMoves(IChessBoard chessBoard) throws IllegalStateException {
     return null;
   }
 }
