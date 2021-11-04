@@ -87,13 +87,19 @@ public class ChessSquare implements IChessSquare {
 
   @Override
   public String toString() {
-    switch (this.color) { // TODO: Print square
-      case BLACK:
-        return "⬛" + Utils.fileLetter(this.file) + this.rank; // Black box
-      case WHITE:
-        return "⬜" + Utils.fileLetter(this.file) + this.rank; // White box
-      default:
-        throw new IllegalArgumentException("Invalid Square Color");
+    if (this.hasPiece()) {
+      return this.piece.toString();
     }
+    else {
+      switch (this.color) { // TODO: Print square with piece on it?
+        case BLACK:
+          return "⬛" + Utils.fileLetter(this.file) + this.rank; // Black box
+        case WHITE:
+          return "⬜" + Utils.fileLetter(this.file) + this.rank; // White box
+        default:
+          throw new IllegalArgumentException("Invalid Square Color");
+      }
+    }
+
   }
 }
