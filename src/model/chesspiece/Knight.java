@@ -6,10 +6,17 @@ import model.chessboard.IChessSquare;
 import model.chesscolor.EChessColor;
 
 /**
- * TODO
+ * Class to represent a Knight chess piece. A Knight can move in an L shape,
+ * and can jump over pieces. The range is 2 squares in a cardinal direction,
+ * and then 1 square to the left or right.
  */
 public class Knight extends AChessPiece {
 
+  /**
+   * Constructs a knight given the color and starting square.
+   * @param color the color for this chess piece
+   * @param startingSquare the starting square for this chess piece
+   */
   protected Knight(EChessColor color,
       IChessSquare startingSquare) {
     super(color, "♞", "♘", startingSquare);

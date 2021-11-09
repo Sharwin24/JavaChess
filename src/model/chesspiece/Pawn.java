@@ -6,28 +6,17 @@ import model.chessboard.IChessSquare;
 import model.chesscolor.EChessColor;
 
 /**
- * TODO
+ * Class to represent a Pawn chess piece.
  */
 public class Pawn extends AChessPiece {
 
-  private int moveCounter;
+  // Mechanic for the pawn's ability to move forward 2 spaces
+  public boolean hasMoved;
 
   protected Pawn(EChessColor color,
       IChessSquare startingSquare) {
     super(color, "♟", "♙", startingSquare);
-    this.moveCounter = 0;
-  }
-
-  /**
-   * Gets the pawn's move.
-   * @return
-   */
-  public int getMoveCounter() {
-    return this.moveCounter;
-  }
-
-  public void incrementMoveCounter() {
-    this.moveCounter++;
+    this.hasMoved = false;
   }
 
   @Override
