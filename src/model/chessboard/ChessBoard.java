@@ -55,10 +55,10 @@ public class ChessBoard implements IChessBoard {
 
   @Override
   public IChessSquare getSquare(int file, int rank) throws IndexOutOfBoundsException {
-    if (file <= 0 || file > 8 || rank <= 0 || rank > 8) {
+    if (file <= 0 || file > 8 || rank <= 0 || rank > 8) { //TODO: Enforce indexing
       throw new IndexOutOfBoundsException("Square position out of bounds!");
     }
-    return this.chessBoard.get(8 - (rank - 1)).get(file - 1);
+    return this.chessBoard.get(8 - rank).get(file);
   }
 
   @Override

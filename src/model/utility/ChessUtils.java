@@ -11,19 +11,19 @@ public final class ChessUtils {
       = new HashMap<>(8);
 
   public ChessUtils() {
-    fileMap.put(1, "a");
-    fileMap.put(2, "b");
-    fileMap.put(3, "c");
-    fileMap.put(4, "d");
-    fileMap.put(5, "e");
-    fileMap.put(6, "f");
-    fileMap.put(7, "g");
-    fileMap.put(8, "h");
+    fileMap.put(0, "a");
+    fileMap.put(1, "b");
+    fileMap.put(2, "c");
+    fileMap.put(3, "d");
+    fileMap.put(4, "e");
+    fileMap.put(5, "f");
+    fileMap.put(6, "g");
+    fileMap.put(7, "h");
   }
 
   public static String fileLetter(int file) throws IndexOutOfBoundsException {
-    if (!Utils.inBounds(file, 1, 8)) {
-      throw new IndexOutOfBoundsException("File out of bounds. Range: [1,8]");
+    if (!Utils.inBounds(file, 0, 7)) {
+      throw new IndexOutOfBoundsException("File out of bounds. Range: [0,7]");
     }
     return fileMap.get(file);
   }

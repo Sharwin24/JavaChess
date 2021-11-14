@@ -31,6 +31,11 @@ public class Bishop extends AChessPiece {
   }
 
   @Override
+  public int getValue() {
+    return 3;
+  }
+
+  @Override
   public boolean canMoveTo(IChessBoard chessBoard, IChessSquare destinationSquare)
       throws IllegalStateException {
     return false;

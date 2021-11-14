@@ -45,6 +45,5 @@ public class ChessModel implements IChessModel {
 
   @Override
   public void move(IChessPiece pieceToMove, IChessSquare destinationSquare) {
-    chessBoard.getBoardArray().get(pieceToMove.getSquare().getFile())
   }
 }

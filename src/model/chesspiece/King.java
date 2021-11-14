@@ -33,6 +33,11 @@ public class King extends AChessPiece {
   }
 
   @Override
+  public int getValue() {
+    return 4; // Depends on current chess social norms
+  }
+
+  @Override
   public boolean canMoveTo(IChessBoard chessBoard, IChessSquare destinationSquare)
       throws IllegalStateException {
     return false;
