@@ -25,10 +25,23 @@ public class Rook extends AChessPiece {
     this.hasCastled = false;
   }
 
-  private boolean canCastle(IChessBoard chessBoard) {
+  /**
+   * Determines if castling with this piece on the given board is legal or not
+   * @param chessBoard the board to determine the move legality
+   * @return a boolean if the castle is legal
+   * @throws IllegalStateException if the given board does not contain this piece
+   */
+  private boolean canCastle(IChessBoard chessBoard) throws IllegalStateException{
     return false;
   }
 
+  /**
+   * Determines if a move regarding this piece, on the given board, to the destination
+   * square, is a castling move or not.
+   * @param board the board to determine the move on
+   * @param destinationSquare the square for the move to
+   * @return a boolean whether the move with this piece is a castle or not
+   */
   public boolean givenMoveIsCastle(IChessBoard board, IChessSquare destinationSquare) {
     return false;
   }
