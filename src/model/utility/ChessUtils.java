@@ -25,6 +25,14 @@ public final class ChessUtils {
     fileMap.put(7, "h");
   }
 
+  /**
+   * Gets the file letter as a string given the index. Throws an exception if the index is out of
+   * bounds
+   *
+   * @param file the index of the file
+   * @return a string representing the letter of that file (examples: 0 -> "a", 1 -> "b", 7 -> "h")
+   * @throws IndexOutOfBoundsException if the index is out of bounds (zero-indexed)
+   */
   public static String fileLetter(int file) throws IndexOutOfBoundsException {
     if (!Utils.inBounds(file, 0, 7)) {
       throw new IndexOutOfBoundsException("File out of bounds. Range: [0,7]");
@@ -35,16 +43,18 @@ public final class ChessUtils {
   /**
    * Maps a unary function <code>mapperFunc</code> on every square in a 2D list of squares
    * <code>toMapOn</code>.
-   * @param toMapOn the list to map a function on, with signature mapperFunc :: IChessSquare -> Y
+   *
+   * @param toMapOn    the list to map a function on, with signature mapperFunc :: IChessSquare ->
+   *                   Y
    * @param mapperFunc a well-defined unary function to apply to all squares in the list
-   * @param <Y> the result of the mapperFunc call
+   * @param <Y>        the result of the mapperFunc call
    * @return a 2D array of the same size as <code>toMapOn</code> (64), of type Y.
    */
   public static <Y> List<List<Y>> boardMap(List<List<IChessSquare>> toMapOn,
       Function<IChessSquare, Y> mapperFunc) {
     List<List<Y>> mappedResult = new ArrayList<>();
 
-    for (int i = 0; i <  8; i++) {
+    for (int i = 0; i < 8; i++) {
       List<Y> thisRow = new ArrayList<>();
       for (int j = 0; j < 8; j++) {
         thisRow.add(mapperFunc.apply(toMapOn.get(i).get(j)));
@@ -54,5 +64,5 @@ public final class ChessUtils {
 
     return mappedResult;
   }
-  
+
 }
