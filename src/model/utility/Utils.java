@@ -16,6 +16,15 @@ public final class Utils {
     return toCheck >= lowerBound && toCheck <= upperBound;
   }
 
+  /**
+   * Filters the list <code>toFilter</code> to return a list consisting of only the elements that
+   * return <code>true</code> for the <code>Predicate</code> function <code>filterWith</code>.
+   * @param toFilter the list to filter
+   * @param filterWith the predicate by which to filter the list
+   * @param <X> the type of elements in the list to be filtered
+   * @return a <code>List</code> of type <code>X</code> consisting of elements that return
+   * <code>true</code> for the predicate function <code>filterWith</code>.
+   */
   public static <X> List<X> filter(List<X> toFilter, Predicate<X> filterWith) {
     List<X> filtered = new ArrayList<>();
 
