@@ -1,11 +1,14 @@
 package model;
 
+import java.util.ArrayList;
 import java.util.List;
 import model.chessboard.ChessBoard;
 import model.chessboard.IChessBoard;
 import model.chessboard.IChessSquare;
 import model.chesscolor.EChessColor;
 import model.chesspiece.IChessPiece;
+import model.utility.ChessUtils;
+import model.utility.Utils;
 
 /**
  * An implementation of <code>IChessModel</code> to run a Chess game. The model
@@ -46,6 +49,13 @@ public class ChessModel implements IChessModel {
 
   @Override
   public void move(IChessPiece pieceToMove, IChessSquare destinationSquare) {
-    List<IChessSquare> mechanicallyAccessibleMoves = pieceToMove.
-  } // adam's branch
+    List<IChessSquare> legalMoves = pieceToMove.possibleMoves(this.chessBoard);
+    if (legalMoves.contains(destinationSquare)) {
+      this.chessBoard.setChessBoardArray(ChessUtils.boardMap(this.chessBoard.getBoardArray(),
+          (sqr -> (destinationSquare.hasPiece() &&)
+          });
+
+    }
+  }
+
 }

@@ -9,7 +9,7 @@ import model.chesspiece.IChessPiece;
  */
 public class ChessBoard implements IChessBoard {
 
-  private final List<List<IChessSquare>> chessBoard;
+  private List<List<IChessSquare>> chessBoard;
   private List<IChessSquare> enPassantSquares;
 
   public ChessBoard(List<List<IChessSquare>> chessBoard) {
@@ -54,6 +54,11 @@ public class ChessBoard implements IChessBoard {
   }
 
   @Override
+  public void setChessBoardArray(List<List<IChessSquare>> squares) {
+    this.chessBoard = squares;
+  }
+
+  @Override
   public IChessSquare getSquare(int file, int rank) throws IndexOutOfBoundsException {
     if (file <= 0 || file > 8 || rank <= 0 || rank > 8) { //TODO: Enforce indexing
       throw new IndexOutOfBoundsException("Square position out of bounds!");
@@ -75,6 +80,8 @@ public class ChessBoard implements IChessBoard {
   public List<IChessSquare> enPassantSquares() {
     return this.enPassantSquares;
   }
+
+
 
   @Override
   public boolean equals(Object o) {
