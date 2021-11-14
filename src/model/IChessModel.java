@@ -1,6 +1,5 @@
 package model;
 
-import model.chessboard.IChessBoard;
 import model.chessboard.IChessSquare;
 import model.chesspiece.IChessPiece;
 

@@ -25,6 +25,14 @@ public class Rook extends AChessPiece {
     this.hasCastled = false;
   }
 
+  private boolean canCastle(IChessBoard chessBoard) {
+    return false;
+  }
+
+  public boolean givenMoveIsCastle(IChessBoard board, IChessSquare destinationSquare) {
+    return false;
+  }
+
   @Override
   public List<IChessSquare> possibleMoves(IChessBoard chessBoard) throws IllegalStateException {
     if (!chessBoard.getSquare(this.file,this.rank).hasPiece() ||
