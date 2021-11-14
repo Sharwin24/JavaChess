@@ -30,4 +30,10 @@ public class Knight extends AChessPiece {
     }
     return null;
   }
+
+  @Override
+  public boolean canMoveTo(IChessBoard chessBoard, IChessSquare destinationSquare)
+      throws IllegalStateException {
+    return false;
+  }
 }

@@ -12,6 +12,8 @@ import model.chesscolor.EChessColor;
  */
 public class Rook extends AChessPiece {
 
+  private boolean hasCastled;
+
   /**
    * Constructs a Rook chess piece given a color and starting square.
    * @param color The color for this piece
@@ -20,6 +22,7 @@ public class Rook extends AChessPiece {
   protected Rook(EChessColor color,
       IChessSquare startingSquare) {
     super(color, "♜", "♖", startingSquare);
+    this.hasCastled = false;
   }
 
   @Override
@@ -29,5 +32,11 @@ public class Rook extends AChessPiece {
       throw new IllegalStateException("Invalid board given");
     }
     return null;
+  }
+
+  @Override
+  public boolean canMoveTo(IChessBoard chessBoard, IChessSquare destinationSquare)
+      throws IllegalStateException {
+    return false;
   }
 }
