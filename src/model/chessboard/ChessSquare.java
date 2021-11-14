@@ -2,7 +2,7 @@ package model.chessboard;
 
 import model.chesscolor.EChessColor;
 import model.chesspiece.IChessPiece;
-import model.utility.Utils;
+import model.utility.ChessUtils;
 
 /**
  * Implementation of <code>IChessSquare</code>. Represents a Chess Square that is a container for a
@@ -93,9 +93,9 @@ public class ChessSquare implements IChessSquare {
     else {
       switch (this.color) { // TODO: Print square with piece on it?
         case BLACK:
-          return "⬛" + Utils.fileLetter(this.file) + this.rank; // Black box
+          return "⬛" + ChessUtils.fileLetter(this.file) + this.rank; // Black box
         case WHITE:
-          return "⬜" + Utils.fileLetter(this.file) + this.rank; // White box
+          return "⬜" + ChessUtils.fileLetter(this.file) + this.rank; // White box
         default:
           throw new IllegalArgumentException("Invalid Square Color");
       }

@@ -62,8 +62,11 @@ public abstract class AChessPiece implements IChessPiece {
       throws IllegalStateException;
 
   @Override
+  public abstract int getValue();
+
+  @Override
   public int hashCode() {
-    return Objects.hash(this.file, this.rank, this.blackText, this.whiteText);
+    return Objects.hash(this.file, this.rank, this.blackText, this.whiteText, this.pieceColor);
   }
 
   @Override
@@ -74,8 +77,8 @@ public abstract class AChessPiece implements IChessPiece {
 
     if (o instanceof IChessPiece) {
       IChessPiece otherPiece = (IChessPiece) o;
-      return otherPiece.getSquare() == this.getSquare() &&
-          otherPiece.hashCode() == this.hashCode();
+      return otherPiece.getSquare() == this.getSquare()
+          && otherPiece.hashCode() == this.hashCode();
     }
     return false;
   }

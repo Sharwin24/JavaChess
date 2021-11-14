@@ -17,6 +17,12 @@ public interface IChessPiece {
   IChessSquare getSquare();
 
   /**
+   * Obtains this piece's material value.
+   * @return value as an integer
+   */
+  int getValue();
+
+  /**
    * Gets a list of the possible moves the piece can make given the
    * chess board the piece is on. Ensures that the given board contains this
    * piece on this piece's square.
