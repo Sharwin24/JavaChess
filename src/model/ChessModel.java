@@ -1,5 +1,6 @@
 package model;
 
+import java.util.List;
 import model.chessboard.ChessBoard;
 import model.chessboard.IChessBoard;
 import model.chessboard.IChessSquare;
@@ -45,5 +46,6 @@ public class ChessModel implements IChessModel {
 
   @Override
   public void move(IChessPiece pieceToMove, IChessSquare destinationSquare) {
+    List<IChessSquare> mechanicallyAccessible
   }
 }

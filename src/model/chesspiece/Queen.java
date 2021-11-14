@@ -5,8 +5,16 @@ import model.chessboard.IChessBoard;
 import model.chessboard.IChessSquare;
 import model.chesscolor.EChessColor;
 
+/**
+ * Class to represent Queen chess piece.
+ */
 public class Queen extends AChessPiece {
 
+  /**
+   * Constructs a Queen chess piece given a color and starting square
+   * @param color the chess color for this piece
+   * @param startingSquare the square for this piece to start on
+   */
   protected Queen(EChessColor color,
       IChessSquare startingSquare) {
     super(color, "♛", "♕", startingSquare);
