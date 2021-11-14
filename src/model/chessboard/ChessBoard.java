@@ -75,4 +75,9 @@ public class ChessBoard implements IChessBoard {
   public List<IChessSquare> enPassantSquares() {
     return this.enPassantSquares;
   }
+
+  @Override
+  public boolean equals(Object o) {
+
+  }
 }

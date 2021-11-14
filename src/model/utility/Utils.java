@@ -1,6 +1,12 @@
 package model.utility;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
+import java.util.function.Function;
+import model.chessboard.IChessBoard;
+import model.chessboard.IChessSquare;
+import model.chesspiece.IChessPiece;
 
 public class Utils {
 
@@ -26,6 +32,15 @@ public class Utils {
 
   public static boolean inBounds(double toCheck, double lowerBound, double upperBound) {
     return toCheck >= lowerBound && toCheck <= upperBound;
+  }
+
+  public static <Y> List<List<Y>> boardMap(List<List<IChessSquare>> toMapOn,
+      Function<IChessSquare, Y> mapperFunc) {
+    List<List<Y>> mappedResult = new ArrayList<>();
+
+    for (List<IChessSquare> col : toMapOn) {
+
+    }
   }
 
 }
