@@ -80,11 +80,15 @@ public abstract class AChessPiece implements IChessPiece {
       return true;
     }
 
-    if (o instanceof IChessPiece) {
-      IChessPiece otherPiece = (IChessPiece) o;
-      return otherPiece.getSquare() == this.getSquare()
-          && otherPiece.hashCode() == this.hashCode();
+    if (o == null || getClass() != o.getClass()) {
+      return false;
     }
-    return false;
+
+    IChessPiece otherPiece = (IChessPiece) o;
+
+    return this.getColor() == otherPiece.getColor()
+        && this.file == otherPiece.getSquare().getFile()
+        && this.rank == otherPiece.getSquare().getRank()
+        && this.hashCode() == otherPiece.hashCode();
   }
 }

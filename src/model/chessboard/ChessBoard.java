@@ -23,8 +23,8 @@ public class ChessBoard implements IChessBoard {
   }
 
   /**
-   * Returns a 2D Array of <code>IChessSquare</code> of a reset
-   * chess board.
+   * Returns a 2D Array of <code>IChessSquare</code> of a reset chess board.
+   *
    * @return a list of list of <code>IChessSquare</code>
    */
   private List<List<IChessSquare>> getResetChessBoardArr() {
@@ -78,21 +78,23 @@ public class ChessBoard implements IChessBoard {
 
   @Override
   public boolean equals(Object o) {
-    if (this == o)
-      return true;
-
-    if (o instanceof ChessBoard) {
-      ChessBoard otherBoard = (ChessBoard) o;
-      for (int r = 0; r < 7 ; r++) {
-        for (int c = 0; c < 7; c++) {
-          IChessSquare square = otherBoard.getSquare(c,r);
-          if (this.getSquare(c,r) != square) {
-            return false;
-          }
-        }
-      }
+    if (this == o) {
       return true;
     }
-    return false;
+
+    if (o == null || getClass() != o.getClass()) {
+      return false;
+    }
+
+    ChessBoard otherBoard = (ChessBoard) o;
+    for (int r = 0; r < 7; r++) {
+      for (int c = 0; c < 7; c++) {
+        IChessSquare square = otherBoard.getSquare(c, r);
+        if (this.getSquare(c, r) != square) {
+          return false;
+        }
+      }
+    }
+    return true;
   }
 }

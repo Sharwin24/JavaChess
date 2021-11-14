@@ -1,5 +1,6 @@
 package model.chessboard;
 
+import java.util.Objects;
 import model.chesscolor.EChessColor;
 import model.chesspiece.IChessPiece;
 import model.utility.ChessUtils;
@@ -89,8 +90,7 @@ public class ChessSquare implements IChessSquare {
   public String toString() {
     if (this.hasPiece()) {
       return this.piece.toString();
-    }
-    else {
+    } else {
       switch (this.color) { // TODO: Print square with piece on it?
         case BLACK:
           return "⬛" + ChessUtils.fileLetter(this.file) + this.rank; // Black box
@@ -101,5 +101,27 @@ public class ChessSquare implements IChessSquare {
       }
     }
 
+  }
+
+  @Override
+  public boolean equals(Object o) {
+    if (this == o) {
+      return true;
+    }
+
+    if (o == null || getClass() != o.getClass()) {
+      return false;
+    }
+
+    ChessSquare that = (ChessSquare) o;
+    return this.file == that.file
+        && this.rank == that.rank
+        && this.color == that.color
+        && this.piece == that.piece;
+  }
+
+  @Override
+  public int hashCode() {
+    return Objects.hash(this.color, this.file, this.rank, this.piece);
   }
 }
