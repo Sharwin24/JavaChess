@@ -3,15 +3,20 @@ package model.utility;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.function.Function;
 import java.util.function.Predicate;
-import model.chessboard.IChessSquare;
 
 /**
  * Utility class for general utility functions
  */
 public final class Utils {
 
+  /**
+   * Determines if the given number is in between the given range (inclusive)
+   * @param toCheck the number to check
+   * @param lowerBound the lower bound of the range
+   * @param upperBound the upper bound of the range
+   * @return a boolean whether the number is in bounds or not
+   */
   public static boolean inBounds(double toCheck, double lowerBound, double upperBound) {
     return toCheck >= lowerBound && toCheck <= upperBound;
   }
