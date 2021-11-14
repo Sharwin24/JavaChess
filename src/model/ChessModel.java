@@ -1,15 +1,18 @@
 package model;
 
+import java.util.ArrayList;
 import java.util.List;
 import model.chessboard.ChessBoard;
 import model.chessboard.IChessBoard;
 import model.chessboard.IChessSquare;
 import model.chesscolor.EChessColor;
 import model.chesspiece.IChessPiece;
+import model.utility.ChessUtils;
+import model.utility.Utils;
 
 /**
- * An implementation of <code>IChessModel</code> to run a Chess game. The model
- * provides utility for an <code>IChessController</code>
+ * An implementation of <code>IChessModel</code> to run a Chess game. The model provides utility for
+ * an <code>IChessController</code>
  */
 public class ChessModel implements IChessModel {
 
@@ -17,11 +20,12 @@ public class ChessModel implements IChessModel {
   private EChessColor currentPlayerTurn;
 
   /**
-   * Constructs a <code>ChessModel</code> with a given starting board and
-   * player turn. The starting board is <i>not</i> necessarily a reset board.
+   * Constructs a <code>ChessModel</code> with a given starting board and player turn. The starting
+   * board is <i>not</i> necessarily a reset board.
+   *
    * @param chessBoard An <code>IChessBoard</code> for the starting board
-   * @param playerTurn A <code>EChessColor</code> representing the player's turn
-   *                   for the given starting board.
+   * @param playerTurn A <code>EChessColor</code> representing the player's turn for the given
+   *                   starting board.
    */
   public ChessModel(IChessBoard chessBoard, EChessColor playerTurn) {
     this.chessBoard = chessBoard;
@@ -29,8 +33,8 @@ public class ChessModel implements IChessModel {
   }
 
   /**
-   * Constructs a <code>ChessModel</code> with a reset starting board, and
-   * white as the starting color.
+   * Constructs a <code>ChessModel</code> with a reset starting board, and white as the starting
+   * color.
    */
   public ChessModel() {
     this.chessBoard = new ChessBoard();
@@ -46,6 +50,13 @@ public class ChessModel implements IChessModel {
 
   @Override
   public void move(IChessPiece pieceToMove, IChessSquare destinationSquare) {
-    //List<IChessSquare> mechanicallyAccessible
+    // TODO finish logic
+    /*
+    List<IChessSquare> legalMoves = pieceToMove.possibleMoves(this.chessBoard);
+    if (legalMoves.contains(destinationSquare)) {
+      this.chessBoard.setChessBoardArray(ChessUtils.boardMap(this.chessBoard.getBoardArray(),
+          (sqr -> (destinationSquare.hasPiece() &&)
+    });
+    */
   }
 }

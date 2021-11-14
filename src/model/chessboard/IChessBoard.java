@@ -80,4 +80,10 @@ public interface IChessBoard {
    * @return a List of <code>IChessSquare</code> representing the En Passant squares.
    */
   List<IChessSquare> enPassantSquares();
+
+  /**
+   * TODO
+   *
+   */
+  void setChessBoardArray(List<List<IChessSquare>> squares);
 }
