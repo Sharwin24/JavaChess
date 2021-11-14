@@ -5,7 +5,8 @@ import model.chessboard.IChessBoard;
 import model.chessboard.IChessSquare;
 
 /**
- * Representation of a ChessPiece.
+ * Representation of a Chess Piece. Offers functionality to get the
+ * square this piece is on and the list of possible moves this piece can go to
  */
 public interface IChessPiece {
 
@@ -24,5 +25,15 @@ public interface IChessPiece {
    * @throws IllegalStateException if given board doesn't contain this piece on its square.
    */
   List<IChessSquare> possibleMoves(IChessBoard chessBoard) throws IllegalStateException;
+
+  /**
+   * Determines if this chess piece can move to the given square on the given board.
+   * If the given board does not contain this piece on its square, an exception is thrown.
+   * @param chessBoard the board to determine if the given move is possible or not
+   * @param destinationSquare the square to move to
+   * @return a boolean whether the move is legal or not
+   * @throws IllegalStateException if the given board does not contain this piece on its square
+   */
+  boolean canMoveTo(IChessBoard chessBoard, IChessSquare destinationSquare) throws IllegalStateException;
 
 }
