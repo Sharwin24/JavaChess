@@ -41,6 +41,11 @@ public abstract class AChessPiece implements IChessPiece {
   }
 
   @Override
+  public EChessColor getColor() {
+    return this.pieceColor;
+  }
+
+  @Override
   public String toString() {
     switch (this.pieceColor) {
       case BLACK:

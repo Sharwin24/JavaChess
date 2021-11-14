@@ -78,6 +78,12 @@ public class ChessBoard implements IChessBoard {
 
   @Override
   public boolean equals(Object o) {
-    return false;
+    if (this == o)
+      return true;
+
+    if (o instanceof ChessBoard) {
+      ChessBoard otherBoard = (ChessBoard) o;
+      
+    }
   }
 }

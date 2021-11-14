@@ -46,6 +46,6 @@ public class ChessModel implements IChessModel {
 
   @Override
   public void move(IChessPiece pieceToMove, IChessSquare destinationSquare) {
-    List<IChessSquare> mechanicallyAccessible
+    //List<IChessSquare> mechanicallyAccessible
   }
 }
