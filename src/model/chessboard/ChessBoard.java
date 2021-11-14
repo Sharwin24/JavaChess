@@ -83,7 +83,16 @@ public class ChessBoard implements IChessBoard {
 
     if (o instanceof ChessBoard) {
       ChessBoard otherBoard = (ChessBoard) o;
-      
+      for (int r = 0; r < 7 ; r++) {
+        for (int c = 0; c < 7; c++) {
+          IChessSquare square = otherBoard.getSquare(c,r);
+          if (this.getSquare(c,r) != square) {
+            return false;
+          }
+        }
+      }
+      return true;
     }
+    return false;
   }
 }
