@@ -33,6 +33,29 @@ public class ChessSquare implements IChessSquare {
   }
 
   /**
+   * copy ctor with ability to remove a piece
+   */
+  public ChessSquare(IChessSquare aSquare, boolean hasPiece) {
+    color = aSquare.getSquareColor();
+    file = aSquare.getFile();
+    rank = aSquare.getRank();
+
+    if (!aSquare.hasPiece()) { // can't add a piece to a square with no piece
+      hasPiece = false;
+    }
+
+    piece = hasPiece ? aSquare.getPiece() : null;
+
+  }
+
+  /**
+   * copy ctor that can place a piece
+   */
+  public ChessSquare(IChessSquare aSquare, IChessPiece aPiece) {
+    this(aSquare.getSquareColor(),aSquare.getFile(), aSquare.getRank(),aPiece);
+  }
+
+  /**
    * Constructs a <code>ChessSquare</code> given a color, location, and piece to start with.
    *
    * @param color An <code>EChessColor</code> representing the color of this square
