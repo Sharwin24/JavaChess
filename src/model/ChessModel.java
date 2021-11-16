@@ -91,7 +91,7 @@ public class ChessModel implements IChessModel {
 
   @Override
   public void move(IChessPiece pieceToMove, IChessSquare destinationSquare) {
-
+    // TODO: Need doc or in-depth explanation of process and steps
     // store the list of squares that pieceToMove can move to
     List<IChessSquare> legalMoves = pieceToMove.possibleMoves(this.chessBoard);
 
@@ -114,7 +114,7 @@ public class ChessModel implements IChessModel {
 
   }
 
-  /**
+  /** TODO JavaDoc
    * given a valid move, returns the new state of the board, with <strong><i>swag</i></strong>
    *
    * @param pieceToMove
