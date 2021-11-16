@@ -1,9 +1,7 @@
 package model;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import model.chessboard.ChessBoard;
 import model.chessboard.ChessSquare;
 import model.chessboard.IChessBoard;
@@ -11,7 +9,6 @@ import model.chessboard.IChessSquare;
 import model.chesscolor.EChessColor;
 import model.chesspiece.IChessPiece;
 import model.utility.ChessUtils;
-import model.utility.Utils;
 
 /**
  * An implementation of <code>IChessModel</code> to run a Chess game. The model provides utility for
@@ -21,6 +18,8 @@ public class ChessModel implements IChessModel {
 
   private IChessBoard chessBoard;
   private EChessColor currentPlayerTurn;
+  private List<IChessPiece> capturedBlackPieces;
+  private List<IChessPiece> capturedWhitePieces;
 
   /**
    * Constructs a <code>ChessModel</code> with a given starting board and player turn. The starting
@@ -33,6 +32,8 @@ public class ChessModel implements IChessModel {
   public ChessModel(IChessBoard chessBoard, EChessColor playerTurn) {
     this.chessBoard = chessBoard;
     this.currentPlayerTurn = playerTurn;
+    this.capturedWhitePieces = new ArrayList<>();
+    this.capturedBlackPieces = new ArrayList<>();
   }
 
   /**
@@ -40,15 +41,22 @@ public class ChessModel implements IChessModel {
    * color.
    */
   public ChessModel() {
-    this.chessBoard = new ChessBoard();
-    this.currentPlayerTurn = EChessColor.WHITE;
+    this(new ChessBoard(), EChessColor.WHITE);
   }
 
   @Override
-  public void resetBoard() {
-    this.chessBoard.initBoard();
-    this.currentPlayerTurn = EChessColor.WHITE;
-    // Reset timer
+  public void playGame() {
+
+  }
+
+  @Override
+  public List<IChessPiece> getCapturedBlackPieces() {
+    return null;
+  }
+
+  @Override
+  public List<IChessPiece> getCapturedWhitePieces() {
+    return null;
   }
 
 //  private static final Map<EChessColor, IChessMove> moveStylesMap = initMoveStylesMap;
