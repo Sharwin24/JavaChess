@@ -125,34 +125,70 @@ public final class ChessUtils {
     }
   }
 
+  /**
+   * Determines if the given square starts with a rook or not
+   *
+   * @param square the square to check
+   * @return a boolean whether the square should start with the piece or not
+   */
   public static boolean isRookSquare(IChessSquare square) {
     // a && (1 or 8) OR h && (1 or 8)
     return (square.getFile() == 0 && (square.getRank() == 0 || square.getRank() == 7))
         || (square.getFile() == 7 && (square.getRank() == 0 || square.getRank() == 7));
   }
-  
+
+  /**
+   * Determines if the given square starts with a knight or not
+   *
+   * @param square the square to check
+   * @return a boolean whether the square should start with the piece or not
+   */
   public static boolean isKnightSquare(IChessSquare square) {
     // b && (1 or 8) OR g && (1 or 8)
     return (square.getFile() == 1 && (square.getRank() == 0 || square.getRank() == 7))
         || (square.getFile() == 6 && (square.getRank() == 0 || square.getRank() == 7));
   }
 
+  /**
+   * Determines if the given square starts with a bishop or not
+   *
+   * @param square the square to check
+   * @return a boolean whether the square should start with the piece or not
+   */
   public static boolean isBishopSquare(ChessSquare square) {
     // c && (1 or 8) OR f && (1 or 8)
     return (square.getFile() == 2 && (square.getRank() == 0 || square.getRank() == 7))
         || (square.getFile() == 5 && (square.getRank() == 0 || square.getRank() == 7));
   }
 
+  /**
+   * Determines if the given square starts with a queen or not
+   *
+   * @param square the square to check
+   * @return a boolean whether the square should start with the piece or not
+   */
   public static boolean isQueenSquare(ChessSquare square) {
     // d && (1 or 8)
     return square.getFile() == 3 && (square.getRank() == 0 || square.getRank() == 7);
   }
 
+  /**
+   * Determines if the given square starts with a king or not
+   *
+   * @param square the square to check
+   * @return a boolean whether the square should start with the piece or not
+   */
   public static boolean isKingSquare(ChessSquare square) {
     // e && (1 or 8)
     return square.getFile() == 4 && (square.getRank() == 0 || square.getRank() == 7);
   }
 
+  /**
+   * Determines if the given square starts with a pawn or not
+   *
+   * @param square the square to check
+   * @return a boolean whether the square should start with the piece or not
+   */
   public static boolean isPawnSquare(ChessSquare square) {
     // (2 or 7)
     return square.getRank() == 1 || square.getRank() == 6;
