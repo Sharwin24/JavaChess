@@ -1,0 +1,2 @@
+Implement move timer
+Check for null in constructors and functions

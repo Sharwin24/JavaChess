@@ -47,9 +47,12 @@ public class ChessBoard implements IChessBoard {
     return boardArray;
   }
 
-
-  @Override
-  public boolean isValidBoardArray(List<List<IChessSquare>> boardToValidate) {
+  /**
+   * Determines if the given board is a legal chess board or not
+   * @param boardToValidate A 2D board array to validate.
+   * @return a boolean whether the given board is valid or not.
+   */
+  private boolean isValidBoardArray(List<List<IChessSquare>> boardToValidate) {
     // TODO: Size 64, Correct colors, ...
     return false;
   }
@@ -89,6 +92,14 @@ public class ChessBoard implements IChessBoard {
   @Override
   public List<IChessSquare> enPassantSquares() {
     return this.enPassantSquares;
+  }
+
+  @Override
+  public void setChessBoardArray(List<List<IChessSquare>> squares) throws IllegalArgumentException {
+    if (squares == null || !isValidBoardArray(squares)) {
+      throw new IllegalArgumentException("Invalid board array given");
+    }
+    this.chessBoard = squares;
   }
 
 

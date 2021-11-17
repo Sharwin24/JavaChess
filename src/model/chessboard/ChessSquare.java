@@ -182,12 +182,11 @@ public class ChessSquare implements IChessSquare {
     ChessSquare that = (ChessSquare) o;
     return this.file == that.file
         && this.rank == that.rank
-        && this.color == that.color
-        && this.piece == that.piece;
+        && this.color == that.color;
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(this.color, this.file, this.rank, this.piece);
+    return Objects.hash(this.color, this.file, this.rank);
   }
 }
