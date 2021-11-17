@@ -16,7 +16,7 @@ public class Bishop extends AChessPiece {
    * @param startingSquare The <code>IChessSquare</code> representing the starting
    *                       square for the piece.
    */
-  protected Bishop(EChessColor color,
+  public Bishop(EChessColor color,
       IChessSquare startingSquare) {
     super(color, "♝", "♗", startingSquare);
   }

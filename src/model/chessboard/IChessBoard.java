@@ -11,11 +11,6 @@ import model.chesspiece.IChessPiece;
 public interface IChessBoard {
 
   /**
-   * Initializes the board with the pieces on their starting squares.
-   */
-  void initBoard();
-
-  /**
    * Determines if the given board is a legal chess board or not
    * @param boardToValidate A 2D board array to validate.
    * @return a boolean whether the given board is valid or not.
@@ -80,10 +75,4 @@ public interface IChessBoard {
    * @return a List of <code>IChessSquare</code> representing the En Passant squares.
    */
   List<IChessSquare> enPassantSquares();
-
-  /**
-   * TODO
-   *
-   */
-  void setChessBoardArray(List<List<IChessSquare>> squares);
 }

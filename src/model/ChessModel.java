@@ -8,6 +8,9 @@ import model.chessboard.IChessBoard;
 import model.chessboard.IChessSquare;
 import model.chesscolor.EChessColor;
 import model.chesspiece.IChessPiece;
+import model.chessplayer.BChessPlayer;
+import model.chessplayer.IChessPlayer;
+import model.chessplayer.WChessPlayer;
 import model.utility.ChessUtils;
 
 /**
@@ -18,6 +21,8 @@ public class ChessModel implements IChessModel {
 
   private IChessBoard chessBoard;
   private EChessColor currentPlayerTurn;
+  private IChessPlayer whitePlayer;
+  private IChessPlayer blackPlayer;
   private List<IChessPiece> capturedBlackPieces;
   private List<IChessPiece> capturedWhitePieces;
 
@@ -34,6 +39,15 @@ public class ChessModel implements IChessModel {
     this.currentPlayerTurn = playerTurn;
     this.capturedWhitePieces = new ArrayList<>();
     this.capturedBlackPieces = new ArrayList<>();
+
+    this.whitePlayer = new WChessPlayer();
+    this.blackPlayer = new BChessPlayer();
+    switch(playerTurn) {
+      case WHITE:
+        this.whitePlayer.setTurn(true);
+      case BLACK:
+        this.blackPlayer.setTurn(true);
+    }
   }
 
   /**
@@ -51,51 +65,13 @@ public class ChessModel implements IChessModel {
 
   @Override
   public List<IChessPiece> getCapturedBlackPieces() {
-    return null;
+    return this.capturedBlackPieces;
   }
 
   @Override
   public List<IChessPiece> getCapturedWhitePieces() {
-    return null;
+    return this.capturedWhitePieces;
   }
-
-//  private static final Map<EChessColor, IChessMove> moveStylesMap = initMoveStylesMap;
-//  private static Map<EChessColor, IChessMove> initMoveStylesMap() {
-//    Map<EChessColor, ChessMove> moveStylesMap = new HashMap<>();
-//    moveStylesMap.putIfAbsent(null, new MoveToEmptySquare());
-//    moveStylesMap.putIfAbsent(EChessColor.WHITE, new MoveToSquareContainingWhitePiece());
-//    moveStylesMap.putIfAbsent(EChessColor.BLACK, new MoveToSquareContainingBlackPiece());
-//
-//    return moveStylesMap;
-//  }
-//
-//  /**
-//   * A function object that consumes a chess piece to move and
-//   * a square to move to, and returns a new
-//   * board depending where the move has been executed one of three ways (implementations):
-//   * <ol>
-//   *   <li>a move to a square containing a white piece</li>
-//   *   <li>a move to a square containing a black piece</li>
-//   *   <li>a move to a square containing no piece</li>
-//   * </ol>
-//   */
-//  private interface IChessMove {
-//    IChessBoard executeMove(IChessPiece pieceToMove, IChessSquare destinationSquare);
-//  }
-//
-//  /**
-//   * Returns a [Maybe EChessColor], where a [Maybe X] is either an X or null.
-//   * @param returnMyPieceColorOrNull the square whose piece color, or null, will be returned
-//   * @return a [Maybe EChessColor] representing the color of the piece on the given square, or null
-//   * if there is no piece on the given square.
-//   */
-//  private static EChessColor pieceColorSwitcher(IChessSquare returnMyPieceColorOrNull) {
-//    if (!returnMyPieceColorOrNull.hasPiece()) {
-//      return null;
-//    }
-//
-//    return returnMyPieceColorOrNull.getPiece().getColor();
-//  }
 
   @Override
   public void move(IChessPiece pieceToMove, IChessSquare destinationSquare) {

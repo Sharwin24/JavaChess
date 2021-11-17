@@ -19,7 +19,7 @@ public class King extends AChessPiece {
    * @param color the piece's color
    * @param startingSquare the square to start on
    */
-  protected King(EChessColor color,
+  public King(EChessColor color,
       IChessSquare startingSquare) {
     super(color, "♚", "♔", startingSquare);
     this.hasCastled = false;

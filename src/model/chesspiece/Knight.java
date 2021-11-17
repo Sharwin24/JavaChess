@@ -17,7 +17,7 @@ public class Knight extends AChessPiece {
    * @param color the color for this chess piece
    * @param startingSquare the starting square for this chess piece
    */
-  protected Knight(EChessColor color,
+  public Knight(EChessColor color,
       IChessSquare startingSquare) {
     super(color, "♞", "♘", startingSquare);
   }

@@ -52,7 +52,7 @@ public class ChessSquare implements IChessSquare {
    * copy ctor that can place a piece
    */
   public ChessSquare(IChessSquare aSquare, IChessPiece aPiece) {
-    this(aSquare.getSquareColor(),aSquare.getFile(), aSquare.getRank(),aPiece);
+    this(aSquare.getSquareColor(), aSquare.getFile(), aSquare.getRank(), aPiece);
   }
 
   /**
@@ -107,6 +107,49 @@ public class ChessSquare implements IChessSquare {
   @Override
   public int getRank() {
     return this.rank;
+  }
+
+  @Override
+  public EChessSquareStartingPiece determineStartPiece() {
+    if (ChessUtils.isRookSquare(this)) {
+      if (this.rank == 0) {
+        return EChessSquareStartingPiece.WROOK;
+      } else if (this.rank == 7) {
+        return EChessSquareStartingPiece.BROOK;
+      }
+    } else if (ChessUtils.isKnightSquare(this)) {
+      if (this.rank == 0) {
+        return EChessSquareStartingPiece.WKNIGHT;
+      } else if (this.rank == 7) {
+        return EChessSquareStartingPiece.BKNIGHT;
+      }
+    } else if (ChessUtils.isBishopSquare(this)) {
+      if (this.rank == 0) {
+        return EChessSquareStartingPiece.WBISHOP;
+      } else if (this.rank == 7) {
+        return EChessSquareStartingPiece.BBISHOP;
+      }
+    } else if (ChessUtils.isQueenSquare(this)) {
+      if (this.rank == 0) {
+        return EChessSquareStartingPiece.WQUEEN;
+      } else if (this.rank == 7) {
+        return EChessSquareStartingPiece.BQUEEN;
+      }
+    } else if (ChessUtils.isKingSquare(this)) {
+      if (this.rank == 0) {
+        return EChessSquareStartingPiece.WKING;
+      } else if (this.rank == 7) {
+        return EChessSquareStartingPiece.BKING;
+      }
+    } else if (ChessUtils.isPawnSquare(this)) {
+      if (this.rank == 1) {
+        return EChessSquareStartingPiece.WPAWN;
+      } else if (this.rank == 6) {
+        return EChessSquareStartingPiece.BPAWN;
+      }
+    }
+    // Empty starting square
+    return EChessSquareStartingPiece.EMPTY;
   }
 
   @Override

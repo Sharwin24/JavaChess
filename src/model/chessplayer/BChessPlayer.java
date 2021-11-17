@@ -1,5 +1,10 @@
 package model.chessplayer;
 
-public class BChessPlayer {
+import model.chesscolor.EChessColor;
 
+public class BChessPlayer extends AChessPlayer{
+
+  public BChessPlayer() {
+    super(EChessColor.BLACK);
+  }
 }

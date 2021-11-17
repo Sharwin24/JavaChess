@@ -10,8 +10,20 @@ import model.chesspiece.IChessPiece;
  */
 public interface IChessPlayer {
 
+  /**
+   * @return
+   */
   EChessColor getColor();
 
+  /**
+   * @return
+   */
   boolean isTurn();
 
+  /**
+   * Sets the turn boolean to the given value
+   *
+   * @param turn the value to set turn to.
+   */
+  void setTurn(boolean turn);
 }

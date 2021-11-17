@@ -13,7 +13,7 @@ public class Pawn extends AChessPiece {
   // Mechanic for the pawn's ability to move forward 2 spaces
   public boolean hasMoved;
 
-  protected Pawn(EChessColor color,
+  public Pawn(EChessColor color,
       IChessSquare startingSquare) {
     super(color, "♟", "♙", startingSquare);
     this.hasMoved = false;

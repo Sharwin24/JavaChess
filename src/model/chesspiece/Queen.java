@@ -15,7 +15,7 @@ public class Queen extends AChessPiece {
    * @param color the chess color for this piece
    * @param startingSquare the square for this piece to start on
    */
-  protected Queen(EChessColor color,
+  public Queen(EChessColor color,
       IChessSquare startingSquare) {
     super(color, "♛", "♕", startingSquare);
   }

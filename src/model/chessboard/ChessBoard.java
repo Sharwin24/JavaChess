@@ -2,7 +2,9 @@ package model.chessboard;
 
 import java.util.ArrayList;
 import java.util.List;
+import model.chesscolor.EChessColor;
 import model.chesspiece.IChessPiece;
+import model.utility.ChessUtils;
 
 /**
  * Class representing the ChessBoard and its attributes.
@@ -28,14 +30,23 @@ public class ChessBoard implements IChessBoard {
    * @return a list of list of <code>IChessSquare</code>
    */
   private List<List<IChessSquare>> getResetChessBoardArr() {
-    // TODO
-    return null;
+    List<List<IChessSquare>> boardArray = new ArrayList<>();
+    for (int row = 0; row < 8; row++) {
+      boardArray.add(new ArrayList<>());
+      EChessColor colorAcc = (row + 1) % 2 == 0 ? EChessColor.WHITE : EChessColor.BLACK;
+      for (int col = 0; col < 8; col++) {
+        IChessSquare square = new ChessSquare(colorAcc, col, (8 - 1) - row);
+        IChessPiece pieceToPlace = ChessUtils.getStartPieceForSquare(square);
+        if (pieceToPlace != null) { // Empty square
+          square.placePiece(pieceToPlace);
+        }
+        boardArray.get(row).add(square);
+        colorAcc = ChessUtils.switchColor(colorAcc);
+      }
+    }
+    return boardArray;
   }
 
-  @Override
-  public void initBoard() {
-    // Sets up the chess board
-  }
 
   @Override
   public boolean isValidBoardArray(List<List<IChessSquare>> boardToValidate) {
@@ -45,17 +56,16 @@ public class ChessBoard implements IChessBoard {
 
   @Override
   public String getFENString() {
-    return null;
+    // TODO: Parse board and build FEN notation
+    // [https://en.wikipedia.org/wiki/Forsyth%E2%80%93Edwards_Notation]
+    // EMPTY BOARD: rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1
+    return "";
   }
+
 
   @Override
   public List<List<IChessSquare>> getBoardArray() {
     return this.chessBoard;
-  }
-
-  @Override
-  public void setChessBoardArray(List<List<IChessSquare>> squares) {
-    this.chessBoard = squares;
   }
 
   @Override
@@ -80,7 +90,6 @@ public class ChessBoard implements IChessBoard {
   public List<IChessSquare> enPassantSquares() {
     return this.enPassantSquares;
   }
-
 
 
   @Override

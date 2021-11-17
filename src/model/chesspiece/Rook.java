@@ -19,7 +19,7 @@ public class Rook extends AChessPiece {
    * @param color The color for this piece
    * @param startingSquare The starting square for this piece
    */
-  protected Rook(EChessColor color,
+  public Rook(EChessColor color,
       IChessSquare startingSquare) {
     super(color, "♜", "♖", startingSquare);
     this.hasCastled = false;

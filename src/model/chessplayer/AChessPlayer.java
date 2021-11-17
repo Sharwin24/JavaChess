@@ -2,11 +2,19 @@ package model.chessplayer;
 
 import model.chesscolor.EChessColor;
 
+/**
+ * TODO:
+ */
 public abstract class AChessPlayer implements IChessPlayer {
 
   private final EChessColor playerColor;
   private boolean isTurn;
 
+  /**
+   * Constructs a Chess player with the given color
+   * TODO: null checks
+   * @param playerColor
+   */
   protected AChessPlayer(EChessColor playerColor) {
     this.playerColor = playerColor;
     this.isTurn = false;
@@ -22,10 +30,7 @@ public abstract class AChessPlayer implements IChessPlayer {
     return this.isTurn;
   }
 
-  /**
-   * Sets the turn boolean to the given value
-   * @param turn the value to set turn to.
-   */
+  @Override
   public void setTurn(boolean turn) {
     this.isTurn = turn;
   }

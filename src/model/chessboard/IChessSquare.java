@@ -51,4 +51,6 @@ public interface IChessSquare {
    * @return an integer representing the row.
    */
   int getRank();
+
+  EChessSquareStartingPiece determineStartPiece();
 }
