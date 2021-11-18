@@ -8,7 +8,7 @@ import model.chesspiece.IChessPiece;
  * board. Offers functionality to determine move legality and obtaining FEN notation.
  */
 public interface IChessBoard {
-  
+
   /**
    * Obtains the FEN notation of the board. FEN string can be used for printing or can be handed to
    * an external engine such as stockfish for chess AI implementation.
@@ -64,12 +64,13 @@ public interface IChessBoard {
   boolean isLegalMoveCapture(IChessPiece pieceToMove, IChessSquare destSquare);
 
   /**
-   * Gets a list of the En Passant squares for the current board. A private member with the squares
-   * is updated after every move.
+   * Gets the En Passant square for the current board. A private member with the square is updated
+   * after every move.
    *
-   * @return a List of <code>IChessSquare</code> representing the En Passant squares.
+   * @return a <code>IChessSquare</code> representing the En Passant square or null if there is no
+   * En Passant square.
    */
-  List<IChessSquare> enPassantSquares();
+  IChessSquare enPassantSquare();
 
   /**
    * Sets the board array to the given one and ensures the array is a valid one.

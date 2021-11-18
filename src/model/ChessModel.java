@@ -8,9 +8,6 @@ import model.chessboard.IChessBoard;
 import model.chessboard.IChessSquare;
 import model.chesscolor.EChessColor;
 import model.chesspiece.IChessPiece;
-import model.chessplayer.BChessPlayer;
-import model.chessplayer.IChessPlayer;
-import model.chessplayer.WChessPlayer;
 import model.utility.ChessUtils;
 
 /**
@@ -21,8 +18,6 @@ public class ChessModel implements IChessModel {
 
   private IChessBoard chessBoard;
   private EChessColor currentPlayerTurn;
-  private IChessPlayer whitePlayer;
-  private IChessPlayer blackPlayer;
   private List<IChessPiece> capturedBlackPieces;
   private List<IChessPiece> capturedWhitePieces;
 
@@ -39,15 +34,6 @@ public class ChessModel implements IChessModel {
     this.currentPlayerTurn = playerTurn;
     this.capturedWhitePieces = new ArrayList<>();
     this.capturedBlackPieces = new ArrayList<>();
-
-    this.whitePlayer = new WChessPlayer();
-    this.blackPlayer = new BChessPlayer();
-    switch(playerTurn) {
-      case WHITE:
-        this.whitePlayer.setTurn(true);
-      case BLACK:
-        this.blackPlayer.setTurn(true);
-    }
   }
 
   /**

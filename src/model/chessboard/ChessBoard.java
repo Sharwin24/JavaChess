@@ -5,6 +5,7 @@ import java.util.List;
 import model.chesscolor.EChessColor;
 import model.chesspiece.IChessPiece;
 import model.utility.ChessUtils;
+import model.utility.Utils;
 
 /**
  * Class representing the ChessBoard and its attributes.
@@ -12,16 +13,16 @@ import model.utility.ChessUtils;
 public class ChessBoard implements IChessBoard {
 
   private List<List<IChessSquare>> chessBoard;
-  private List<IChessSquare> enPassantSquares;
+  private IChessSquare enPassantSquare;
 
   public ChessBoard(List<List<IChessSquare>> chessBoard) {
     this.chessBoard = chessBoard;
-    this.enPassantSquares = new ArrayList<>();
+    this.enPassantSquare = null;
   }
 
   public ChessBoard() {
     this.chessBoard = this.getResetChessBoardArr();
-    this.enPassantSquares = new ArrayList<>();
+    this.enPassantSquare = null;
   }
 
   /**
@@ -73,7 +74,7 @@ public class ChessBoard implements IChessBoard {
 
   @Override
   public IChessSquare getSquare(int file, int rank) throws IndexOutOfBoundsException {
-    if (file <= 0 || file > 8 || rank <= 0 || rank > 8) { //TODO: Enforce indexing
+    if (!Utils.inBounds(file,0,8) || !Utils.inBounds(rank,0,8)) {
       throw new IndexOutOfBoundsException("Square position out of bounds!");
     }
     return this.chessBoard.get(8 - rank).get(file);
@@ -81,7 +82,7 @@ public class ChessBoard implements IChessBoard {
 
   @Override
   public boolean canMovePieceToSquare(IChessPiece pieceToMove, IChessSquare destSquare) {
-    return false;
+    return pieceToMove.possibleMoves(this).contains(destSquare); // TODO: test?
   }
 
   @Override
@@ -90,8 +91,8 @@ public class ChessBoard implements IChessBoard {
   }
 
   @Override
-  public List<IChessSquare> enPassantSquares() {
-    return this.enPassantSquares;
+  public IChessSquare enPassantSquare() {
+    return this.enPassantSquare;
   }
 
   @Override

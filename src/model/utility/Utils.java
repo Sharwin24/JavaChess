@@ -15,7 +15,7 @@ public final class Utils {
    * @param toCheck the number to check
    * @param lowerBound the lower bound of the range
    * @param upperBound the upper bound of the range
-   * @return a boolean whether the number is in bounds or not
+   * @return a boolean whether the number is in bounds or not [inclusive]
    */
   public static boolean inBounds(double toCheck, double lowerBound, double upperBound) {
     return toCheck >= lowerBound && toCheck <= upperBound;
