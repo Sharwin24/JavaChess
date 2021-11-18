@@ -5,8 +5,20 @@ import java.util.List;
 import model.chessboard.IChessBoard;
 import model.chessboard.IChessSquare;
 
+/**
+ * Class to represent the Path a Knight would take to perform a move.
+ */
 public class KnightPath extends AChessPath {
 
+  /**
+   * Constructs a KnightPath using a board to execute the path on, the starting square, and the
+   * deviation of the file and rank from the start.
+   *
+   * @param board          the board the path exists on
+   * @param startingSquare the square the knight starts
+   * @param fileDelta      the deviation in file
+   * @param rankDelta      the deviation in rank
+   */
   public KnightPath(IChessBoard board, IChessSquare startingSquare, int fileDelta,
       int rankDelta) {
     super(board, startingSquare, fileDelta, rankDelta);
@@ -22,13 +34,13 @@ public class KnightPath extends AChessPath {
               this.startingSquare.getRank() + this.rankDelta);
       squares.add(destSquare);
     } catch (IndexOutOfBoundsException ignored) {
-      // Do nothing
+      // Should only catch IndexException, any other exceptions imply a bug
     }
     return squares;
   }
 
   @Override
-  public boolean outOfBoundsPath() { // Specific to Knight
+  public boolean invalidPath() { // Specific to Knight
     return this.getPathOrder().isEmpty();
   }
 }

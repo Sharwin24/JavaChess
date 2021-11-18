@@ -1,9 +1,7 @@
 package model.chesspiece;
 
-import java.security.KeyPair;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.HashMap;
 import java.util.List;
 import model.chessboard.IChessBoard;
 import model.chessboard.IChessSquare;
@@ -52,7 +50,7 @@ public class Knight extends AChessPiece {
     List<IChessPath> allPaths =
         new ArrayList<>(Arrays.asList(downL, downR, upL, upR, leftD, leftR, rightD, rightU));
     for (IChessPath path : allPaths) {
-      if (!path.outOfBoundsPath()) {
+      if (!path.invalidPath()) {
         if (path.getDestinationSquare().hasPiece()
             && path.getDestinationSquare().getPiece().getColor() != this.getColor()) {
           moves.add(path.getDestinationSquare());
