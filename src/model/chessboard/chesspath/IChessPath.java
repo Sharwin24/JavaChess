@@ -10,9 +10,14 @@ public interface IChessPath {
 
   IChessSquare getStartingSquare();
 
-  List<IChessSquare> pathOrder();
+  IChessSquare getDestinationSquare();
+
+  List<IChessSquare> getPathOrder();
+
+  boolean outOfBoundsPath();
 
   int getFileDelta();
 
   int getRankDelta();
+
 }

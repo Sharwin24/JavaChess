@@ -27,11 +27,11 @@ public interface IChessBoard {
 
   /**
    * Gets the <code>IChessSquare</code> at a given file (column) and rank(row). Treats file and rank
-   * as positions on chessboard. For <i>a4</i>, the parameters (file: 1, rank: 4) should be used.
+   * as positions on chessboard. For <i>a4</i>, the parameters (file: 0, rank: 3) should be used.
    *
-   * @param file the file or column as an int, starting from 1. Matches the letter of the file, (ex:
-   *             a -> 1, c -> 3, h -> 8, etc.) Range [1,8]
-   * @param rank the rank or row as an int, starting from 1. Range [1,8]
+   * @param file the file or column as an int, starting from01. Matches the letter of the file, (ex:
+   *             a -> 0, c -> 2, h -> 7, etc.) Range [0,7]
+   * @param rank the rank or row as an int, starting from 0. Range [0,7]
    * @return a <code>IChessSquare</code> at the given location
    * @throws IndexOutOfBoundsException if either index is out of bounds
    */
