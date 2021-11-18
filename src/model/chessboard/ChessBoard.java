@@ -15,14 +15,22 @@ public class ChessBoard implements IChessBoard {
   private List<List<IChessSquare>> chessBoard;
   private IChessSquare enPassantSquare;
 
+  // For FEN Notation
+  private int halfMoveCounter;
+  private int fullMoveCounter;
+
   public ChessBoard(List<List<IChessSquare>> chessBoard) {
     this.chessBoard = chessBoard;
     this.enPassantSquare = null;
+    this.halfMoveCounter = 0;
+    this.fullMoveCounter = 0; // Not neccessarily correct
   }
 
   public ChessBoard() {
     this.chessBoard = this.getResetChessBoardArr();
     this.enPassantSquare = null;
+    this.halfMoveCounter = 0;
+    this.fullMoveCounter = 0;
   }
 
   /**
@@ -50,6 +58,7 @@ public class ChessBoard implements IChessBoard {
 
   /**
    * Determines if the given board is a legal chess board or not
+   *
    * @param boardToValidate A 2D board array to validate.
    * @return a boolean whether the given board is valid or not.
    */
@@ -62,10 +71,22 @@ public class ChessBoard implements IChessBoard {
   public String getFENString() {
     // TODO: Parse board and build FEN notation
     // [https://en.wikipedia.org/wiki/Forsyth%E2%80%93Edwards_Notation]
-    // EMPTY BOARD: rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1
+    // Starting position: rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1
+    // 1. Board: Starts with rank 8, each rank is delineated by a '/'
+    //           lowercase letters are black pieces, uppercase is white
+    // 2. Player's move: 'w' or 'b'
+    // 3. Castling: 'K' and 'Q' represents white can castle kingside or queenside
+    //              'k' and 'q' are for black.
+    //              If no one can castle this is '-'
+    // 4. En Passant Target Square: '-' if there is none, otherwise if a pawn
+    //                              has just made a 2 square move, it's the square
+    //                              behind them. (ex: P -> e4, en passant sq === e3)
+    // 5. Half-move Counter: Number of half moves since the last capture or pawn advance,
+    //                      for the fifty-move rule.
+    // 6. Full-move Counter: The number of the full move. Starting at 1,
+    //                       incrementing after black's move
     return "";
   }
-
 
   @Override
   public List<List<IChessSquare>> getBoardArray() {
@@ -74,7 +95,7 @@ public class ChessBoard implements IChessBoard {
 
   @Override
   public IChessSquare getSquare(int file, int rank) throws IndexOutOfBoundsException {
-    if (!Utils.inBounds(file,0,8) || !Utils.inBounds(rank,0,8)) {
+    if (!Utils.inBounds(file, 0, 8) || !Utils.inBounds(rank, 0, 8)) {
       throw new IndexOutOfBoundsException("Square position out of bounds!");
     }
     return this.chessBoard.get(8 - rank).get(file);
