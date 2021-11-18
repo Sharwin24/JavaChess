@@ -107,8 +107,8 @@ public class ChessBoard implements IChessBoard {
   }
 
   @Override
-  public boolean isLegalMoveCapture(IChessPiece pieceToMove, IChessSquare destSquare) {
-    return canMovePieceToSquare(pieceToMove, destSquare) && destSquare.hasPiece();
+  public boolean isMoveLegalAndCapture(IChessPiece pieceToMove, IChessSquare destSquare) {
+    return this.canMovePieceToSquare(pieceToMove, destSquare) && destSquare.hasPiece();
   }
 
   @Override

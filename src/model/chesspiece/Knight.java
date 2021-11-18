@@ -1,5 +1,8 @@
 package model.chesspiece;
 
+import java.security.KeyPair;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import model.chessboard.IChessBoard;
 import model.chessboard.IChessSquare;
@@ -28,7 +31,14 @@ public class Knight extends AChessPiece {
         chessBoard.getSquare(this.file,this.rank).getPiece() != this) {
       throw new IllegalStateException("Invalid board given");
     }
-    return null;
+    List<IChessSquare> moves = new ArrayList<>();
+    // Possible moves:
+    // (-2,-1), (-2,+1), Left
+    // (+2,+1), (+2,-1), Right
+    // (-1,+2), (+1,+2), Up
+    // (-1,-2), (+1,-2), Down
+
+    return moves;
   }
 
   @Override

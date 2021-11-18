@@ -54,14 +54,14 @@ public interface IChessBoard {
   boolean canMovePieceToSquare(IChessPiece pieceToMove, IChessSquare destSquare);
 
   /**
-   * Determines if the given legal move is a capture, meaning the destination square has a piece on
-   * it. If the given move is illegal, then <code>false</code> is returned.
+   * Determines if the given move is legal and a capture, meaning the destination square has a piece
+   * on it. If the given move is illegal, then <code>false</code> is returned.
    *
    * @param pieceToMove the piece to move.
    * @param destSquare  the destination square.
-   * @return a boolean determining if the legal move is a capture or not.
+   * @return a boolean determining if the move is legal and a capture or not.
    */
-  boolean isLegalMoveCapture(IChessPiece pieceToMove, IChessSquare destSquare);
+  boolean isMoveLegalAndCapture(IChessPiece pieceToMove, IChessSquare destSquare);
 
   /**
    * Gets the En Passant square for the current board. A private member with the square is updated
