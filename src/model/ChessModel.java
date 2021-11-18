@@ -87,8 +87,8 @@ public class ChessModel implements IChessModel {
   /**
    * given a valid move, returns the new state of the board, with <strong><i>swag</i></strong>
    *
-   * @param pieceToMove
-   * @param destinationSquare
+   * @param pieceToMove the piece to move
+   * @param destinationSquare the square to move the given piece to
    * @return
    */
   private List<List<IChessSquare>> moveHelp(IChessPiece pieceToMove,
