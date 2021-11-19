@@ -26,7 +26,7 @@ public abstract class AChessPiece implements IChessPiece {
    * @param white          The toString for a white version of this piece
    * @param startingSquare The <code>IChessSquare</code> this piece starts on
    * @throws IllegalArgumentException if any arguments are null or invalid
-   */
+   */ // TODO: Change order of white and black args for IDEs
   protected AChessPiece(ChessUtils.EChessColor color, String white, String black,
       IChessSquare startingSquare) throws IllegalArgumentException {
     if (color == null || startingSquare == null) {
