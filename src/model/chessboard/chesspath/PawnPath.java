@@ -8,8 +8,8 @@ import model.chesspiece.IChessPiece;
 import model.utility.ChessUtils.EChessColor;
 
 /**
- * A Class representing a path a pawn can take on a chessboard. Includes captures,
- * 2 square moves, and en passant.
+ * A Class representing a path a pawn can take on a chessboard. Includes captures, 2 square moves,
+ * and en passant.
  */
 public class PawnPath extends AChessPath {
 
@@ -30,7 +30,6 @@ public class PawnPath extends AChessPath {
   @Override
   public List<IChessSquare> getPathOrder() {
     List<IChessSquare> path = new ArrayList<>();
-    IChessPiece piece = startingSquare.getPiece();
 
     if (invalidPath()) {
       return path;
