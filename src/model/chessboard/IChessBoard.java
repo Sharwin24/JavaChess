@@ -2,6 +2,7 @@ package model.chessboard;
 
 import java.util.List;
 import model.chesspiece.IChessPiece;
+import model.utility.ChessUtils.EChessColor;
 
 /**
  * Representation of a ChessBoard class. Wrapper class for a 2D ArrayList representing the chess
@@ -79,4 +80,12 @@ public interface IChessBoard {
    * @throws IllegalArgumentException if the given array is null or invalid
    */
   void setChessBoardArray(List<List<IChessSquare>> squares) throws IllegalArgumentException;
+
+  /**
+   * Gets a list of squares that the given colored pieces are attacking.
+   *
+   * @param attackingColor the color of the attacking pieces
+   * @return a list of IChessSquare that all of the given color pieces can move to.
+   */
+  List<IChessSquare> attackedBy(EChessColor attackingColor);
 }

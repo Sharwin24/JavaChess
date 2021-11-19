@@ -53,6 +53,17 @@ public class King extends ADiscreteChessPiece {
         chessBoard.getSquare(this.file,this.rank).getPiece() != this) {
       throw new IllegalStateException("Invalid board given");
     }
+    // Possible moves:
+    // (0,+1) up
+    // (0,-1) down
+    // (+1,0) right
+    // (-1,0) left
+    // (+1,+1) RightUp
+    // (+1,-1) RightDown
+    // (-1,+1) LeftUp
+    // (-1,-1) LeftDown
+    // (-2,0) LongCastle
+    // (2,0) ShortCastle
     return null;
   }
 

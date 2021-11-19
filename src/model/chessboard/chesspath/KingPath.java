@@ -27,6 +27,10 @@ public class KingPath extends AChessPath{
 
   @Override
   public boolean invalidPath() {
+    // Moves to any adjacent square
+    // Cannot move to a square with a piece of the same color
+    // Cannot capture a piece that is 'protected' (Create definition?)
+    // Cannot move to a square that is 'protected'
     return false;
   }
 }
