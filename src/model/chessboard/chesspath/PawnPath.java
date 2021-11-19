@@ -94,6 +94,7 @@ public class PawnPath extends AChessPath {
             this.startingSquare.getRank() + (rankDelta + 1)).hasPiece() && destSquare.hasPiece();
       }
     }
+    // If path leads to a capture
     if (destSquare.hasPiece()) {
       if (destSquare.getPiece().getColor() != piece.getColor()) {
         if (piece.getColor() == EChessColor.WHITE) {
