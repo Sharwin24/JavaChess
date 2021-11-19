@@ -1,7 +1,10 @@
 package model.chesspiece;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Objects;
+import java.util.function.Function;
 import model.chessboard.IChessBoard;
 import model.chessboard.IChessSquare;
 import model.chesscolor.EChessColor;
@@ -11,12 +14,30 @@ import model.chesscolor.EChessColor;
  */
 public abstract class AChessPiece implements IChessPiece {
 
+  protected static final Map<String, Integer> INITIAL_PIECE_FILE_MAP = initInitialFileMap();
+
+  private static final Map<String, Integer> initInitialFileMap() {
+    HashMap<String, Integer> initialFileMap = new HashMap<>();
+    initialFileMap.putIfAbsent("rook", 0);
+    initialFileMap.putIfAbsent("knight", 1);
+    initialFileMap.putIfAbsent("bishop", 2);
+    initialFileMap.putIfAbsent("queen", 3);
+    initialFileMap.putIfAbsent("king", 4);
+
+    return initialFileMap;
+  }
+
+
   private final EChessColor pieceColor;
   private final String blackText;
   private final String whiteText;
   private IChessSquare currentSquare; // Square may be mutated for move()
   protected final int file;
   protected final int rank;
+
+  protected interface ChessPiecePathModes {
+
+  }
 
   /**
    * Constructs a <code>AChessPiece</code> with a starting square and it's toString values.

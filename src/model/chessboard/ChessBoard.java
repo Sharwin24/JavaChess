@@ -9,6 +9,8 @@ import model.chesspiece.IChessPiece;
  */
 public class ChessBoard implements IChessBoard {
 
+  public static final int BOARD_SIZE = 8;
+
   private List<List<IChessSquare>> chessBoard;
   private List<IChessSquare> enPassantSquares;
 

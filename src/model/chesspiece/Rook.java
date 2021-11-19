@@ -1,9 +1,13 @@
 package model.chesspiece;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.function.Function;
 import model.chessboard.IChessBoard;
 import model.chessboard.IChessSquare;
 import model.chesscolor.EChessColor;
+import model.utility.Utils.Pair;
 
 /**
  * Class to represent a Rook chess piece. Rooks can move in a cardinal direction,
@@ -53,6 +57,18 @@ public class Rook extends AChessPiece {
       throw new IllegalStateException("Invalid board given");
     }
     return null;
+  }
+
+  private final Map<ERookPathMode, Function<Pair<Integer, Integer>, Pair<Integer, Integer>>> rookPathSearcherMap =
+      initRookPathSearcherMap();
+
+  private final Map<ERookPathMode, Function<Pair<Integer, Integer>, Pair<Integer, Integer>>> initRookPathSearcherMap() {
+    Map<ERookPathMode, Function<Pair<Integer, Integer>, Pair<Integer, Integer>>> rookPathSearcherMap = new HashMap<>();
+    rookPathSearcherMap.putIfAbsent()
+  }
+
+  private enum ERookPathMode implements ChessPiecePathModes {
+    RIGHT, UP, LEFT, DOWN;
   }
 
   @Override

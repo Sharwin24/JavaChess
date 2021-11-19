@@ -41,4 +41,15 @@ public final class Utils {
 
     return filtered;
   }
+
+  public final static class Pair<X,Y> {
+    public final X first;
+    public final Y second;
+
+    public Pair(X x, Y y) {
+      first = x;
+      second = y;
+    }
+  }
+
 }
