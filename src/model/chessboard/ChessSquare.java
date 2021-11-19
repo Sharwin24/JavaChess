@@ -155,13 +155,13 @@ public class ChessSquare implements IChessSquare {
   @Override
   public String toString() {
     if (this.hasPiece()) {
-      return this.piece.toString();
+      return this.piece.toString() + ChessUtils.fileLetter(this.file) + (this.rank + 1) + "\t";
     } else {
       switch (this.color) { // TODO: Print square with piece on it?
         case BLACK:
-          return "⬛" + ChessUtils.fileLetter(this.file) + this.rank; // Black box
+          return "⬜" + ChessUtils.fileLetter(this.file) + (this.rank + 1) + "  "; // Black box
         case WHITE:
-          return "⬜" + ChessUtils.fileLetter(this.file) + this.rank; // White box
+          return "⬛" + ChessUtils.fileLetter(this.file) + (this.rank + 1) + "  "; // White box
         default:
           throw new IllegalArgumentException("Invalid Square Color");
       }

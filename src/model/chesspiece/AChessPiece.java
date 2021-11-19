@@ -27,7 +27,7 @@ public abstract class AChessPiece implements IChessPiece {
    * @param startingSquare The <code>IChessSquare</code> this piece starts on
    * @throws IllegalArgumentException if any arguments are null or invalid
    */
-  protected AChessPiece(ChessUtils.EChessColor color, String black, String white,
+  protected AChessPiece(ChessUtils.EChessColor color, String white, String black,
       IChessSquare startingSquare) throws IllegalArgumentException {
     if (color == null || startingSquare == null) {
       throw new IllegalArgumentException("Invalid ChessPiece Arguments");

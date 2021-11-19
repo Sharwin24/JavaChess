@@ -5,6 +5,7 @@ import java.util.List;
 
 import model.chesspiece.IChessPiece;
 import model.utility.ChessUtils;
+import model.utility.ChessUtils.EChessColor;
 import model.utility.Utils;
 
 /**
@@ -42,7 +43,7 @@ public class ChessBoard implements IChessBoard {
         List<List<IChessSquare>> boardArray = new ArrayList<>();
         for (int row = 0; row < 8; row++) {
             boardArray.add(new ArrayList<>());
-            ChessUtils.EChessColor colorAcc = (row + 1) % 2 == 0 ? ChessUtils.EChessColor.WHITE : ChessUtils.EChessColor.BLACK;
+            ChessUtils.EChessColor colorAcc = (row + 1) % 2 == 0 ? EChessColor.BLACK : EChessColor.WHITE;
             for (int col = 0; col < 8; col++) {
                 IChessSquare square = new ChessSquare(colorAcc, col, (8 - 1) - row);
                 IChessPiece pieceToPlace = ChessUtils.getStartPieceForSquare(square);

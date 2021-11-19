@@ -71,7 +71,7 @@ public class ChessModel implements IChessModel {
     }
 
     if (destinationSquare.hasPiece() &&
-        destinationSquare.getPiece().getColor() != currentPlayerTurn) {
+        destinationSquare.getPiece().getColor() != this.currentPlayerTurn) {
       this.chessBoard.setChessBoardArray(moveHelp(pieceToMove, destinationSquare));
       // TODO: add the piece that got taken to a graveyard/win pile for each player
     } else if (!destinationSquare.hasPiece()) {
