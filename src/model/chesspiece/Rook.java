@@ -3,7 +3,7 @@ package model.chesspiece;
 import java.util.List;
 import model.chessboard.IChessBoard;
 import model.chessboard.IChessSquare;
-import model.chesscolor.EChessColor;
+import model.utility.ChessUtils;
 
 /**
  * Class to represent a Rook chess piece. Rooks can move in a cardinal direction,
@@ -19,8 +19,8 @@ public class Rook extends AChessPiece {
    * @param color The color for this piece
    * @param startingSquare The starting square for this piece
    */
-  public Rook(EChessColor color,
-      IChessSquare startingSquare) {
+  public Rook(ChessUtils.EChessColor color,
+              IChessSquare startingSquare) {
     super(color, "♜", "♖", startingSquare);
     this.hasCastled = false;
   }

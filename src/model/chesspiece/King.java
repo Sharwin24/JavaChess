@@ -3,7 +3,7 @@ package model.chesspiece;
 import java.util.List;
 import model.chessboard.IChessBoard;
 import model.chessboard.IChessSquare;
-import model.chesscolor.EChessColor;
+import model.utility.ChessUtils;
 
 /**
  * Class to represent the King chess piece. This piece has
@@ -19,8 +19,8 @@ public class King extends AChessPiece {
    * @param color the piece's color
    * @param startingSquare the square to start on
    */
-  public King(EChessColor color,
-      IChessSquare startingSquare) {
+  public King(ChessUtils.EChessColor color,
+              IChessSquare startingSquare) {
     super(color, "♚", "♔", startingSquare);
     this.hasCastled = false;
   }

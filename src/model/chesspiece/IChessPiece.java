@@ -3,7 +3,7 @@ package model.chesspiece;
 import java.util.List;
 import model.chessboard.IChessBoard;
 import model.chessboard.IChessSquare;
-import model.chesscolor.EChessColor;
+import model.utility.ChessUtils;
 
 /**
  * Representation of a Chess Piece. Offers functionality to get the
@@ -27,7 +27,7 @@ public interface IChessPiece {
    * Gets the piece's color;
    * @return an Enum representing the piece's color
    */
-  EChessColor getColor();
+  ChessUtils.EChessColor getColor();
 
   /**
    * Gets a list of the possible moves the piece can make given the

@@ -1,7 +1,7 @@
 package model.chessboard;
 
-import model.chesscolor.EChessColor;
 import model.chesspiece.IChessPiece;
+import model.utility.ChessUtils;
 
 /**
  * Representation of a ChessSquare. Acts as a container that has the ability to contain an
@@ -13,7 +13,7 @@ public interface IChessSquare {
    * Gets the Square's color.
    * @return an <code>EChessColor</code> representing the color of the square.
    */
-  EChessColor getSquareColor();
+  ChessUtils.EChessColor getSquareColor();
 
   /**
    * Determines if the square has a piece on it or not.

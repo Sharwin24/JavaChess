@@ -6,7 +6,6 @@ import java.util.List;
 import java.util.function.Function;
 import model.chessboard.ChessSquare;
 import model.chessboard.IChessSquare;
-import model.chesscolor.EChessColor;
 import model.chesspiece.Bishop;
 import model.chesspiece.IChessPiece;
 import model.chesspiece.King;
@@ -19,6 +18,10 @@ import model.chesspiece.Rook;
  * Utility class for Chess Utility functions
  */
 public final class ChessUtils {
+
+  public enum EChessColor {
+    BLACK, WHITE
+  }
 
   private static final HashMap<Integer, String> fileMap = new HashMap<>(8) {{
     put(0, "a");

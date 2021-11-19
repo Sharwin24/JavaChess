@@ -3,7 +3,7 @@ package model.chesspiece;
 import java.util.List;
 import model.chessboard.IChessBoard;
 import model.chessboard.IChessSquare;
-import model.chesscolor.EChessColor;
+import model.utility.ChessUtils;
 
 /**
  * Class to represent a Pawn chess piece.
@@ -13,8 +13,8 @@ public class Pawn extends AChessPiece {
   // Mechanic for the pawn's ability to move forward 2 spaces
   public boolean hasMoved;
 
-  public Pawn(EChessColor color,
-      IChessSquare startingSquare) {
+  public Pawn(ChessUtils.EChessColor color,
+              IChessSquare startingSquare) {
     super(color, "♟", "♙", startingSquare);
     this.hasMoved = false;
   }

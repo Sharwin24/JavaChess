@@ -6,7 +6,6 @@ import model.chessboard.ChessBoard;
 import model.chessboard.ChessSquare;
 import model.chessboard.IChessBoard;
 import model.chessboard.IChessSquare;
-import model.chesscolor.EChessColor;
 import model.chesspiece.IChessPiece;
 import model.utility.ChessUtils;
 
@@ -17,7 +16,7 @@ import model.utility.ChessUtils;
 public class ChessModel implements IChessModel {
 
   private IChessBoard chessBoard;
-  private EChessColor currentPlayerTurn;
+  private ChessUtils.EChessColor currentPlayerTurn;
   private List<IChessPiece> capturedBlackPieces;
   private List<IChessPiece> capturedWhitePieces;
 
@@ -26,10 +25,10 @@ public class ChessModel implements IChessModel {
    * board is <i>not</i> necessarily a reset board.
    *
    * @param chessBoard An <code>IChessBoard</code> for the starting board
-   * @param playerTurn A <code>EChessColor</code> representing the player's turn for the given
+   * @param playerTurn A <code>ChessUtils.EChessColor</code> representing the player's turn for the given
    *                   starting board.
    */
-  public ChessModel(IChessBoard chessBoard, EChessColor playerTurn) {
+  public ChessModel(IChessBoard chessBoard, ChessUtils.EChessColor playerTurn) {
     this.chessBoard = chessBoard;
     this.currentPlayerTurn = playerTurn;
     this.capturedWhitePieces = new ArrayList<>();
@@ -41,7 +40,7 @@ public class ChessModel implements IChessModel {
    * color.
    */
   public ChessModel() {
-    this(new ChessBoard(), EChessColor.WHITE);
+    this(new ChessBoard(), ChessUtils.EChessColor.WHITE);
   }
 
   @Override

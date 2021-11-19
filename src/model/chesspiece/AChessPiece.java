@@ -4,14 +4,14 @@ import java.util.List;
 import java.util.Objects;
 import model.chessboard.IChessBoard;
 import model.chessboard.IChessSquare;
-import model.chesscolor.EChessColor;
+import model.utility.ChessUtils;
 
 /**
  * Abstract class representing methods and attributes all <code>IChessPiece</code> objects have.
  */
 public abstract class AChessPiece implements IChessPiece {
 
-  private final EChessColor pieceColor;
+  private final ChessUtils.EChessColor pieceColor;
   private final String blackText;
   private final String whiteText;
   private IChessSquare currentSquare; // Square may be mutated for move()
@@ -27,7 +27,7 @@ public abstract class AChessPiece implements IChessPiece {
    * @param startingSquare The <code>IChessSquare</code> this piece starts on
    * @throws IllegalArgumentException if any arguments are null or invalid
    */
-  protected AChessPiece(EChessColor color, String black, String white,
+  protected AChessPiece(ChessUtils.EChessColor color, String black, String white,
       IChessSquare startingSquare) throws IllegalArgumentException {
     if (color == null || startingSquare == null) {
       throw new IllegalArgumentException("Invalid ChessPiece Arguments");
@@ -41,7 +41,7 @@ public abstract class AChessPiece implements IChessPiece {
   }
 
   @Override
-  public EChessColor getColor() {
+  public ChessUtils.EChessColor getColor() {
     return this.pieceColor;
   }
 

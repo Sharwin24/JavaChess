@@ -1,7 +1,7 @@
 package model.chessboard;
 
 import java.util.Objects;
-import model.chesscolor.EChessColor;
+
 import model.chesspiece.IChessPiece;
 import model.utility.ChessUtils;
 
@@ -12,7 +12,7 @@ import model.utility.ChessUtils;
  */
 public class ChessSquare implements IChessSquare {
 
-  private final EChessColor color;
+  private final ChessUtils.EChessColor color;
   private final int file;
   private final int rank;
   private IChessPiece piece;
@@ -25,7 +25,7 @@ public class ChessSquare implements IChessSquare {
    * @param file  The file or 'column' of this square
    * @param rank  The rank or 'row' of this square
    */
-  public ChessSquare(EChessColor color, int file, int rank) {
+  public ChessSquare(ChessUtils.EChessColor color, int file, int rank) {
     this.color = color;
     this.file = file;
     this.rank = rank;
@@ -63,13 +63,13 @@ public class ChessSquare implements IChessSquare {
    * @param rank  The rank or 'row' of this square
    * @param piece A <code>IChessPiece</code> to start on this square.
    */
-  public ChessSquare(EChessColor color, int file, int rank, IChessPiece piece) {
+  public ChessSquare(ChessUtils.EChessColor color, int file, int rank, IChessPiece piece) {
     this(color, file, rank);
     this.piece = piece;
   }
 
   @Override
-  public EChessColor getSquareColor() {
+  public ChessUtils.EChessColor getSquareColor() {
     return this.color;
   }
 

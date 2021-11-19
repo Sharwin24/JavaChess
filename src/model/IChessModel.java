@@ -1,9 +1,8 @@
 package model;
 
 import java.util.List;
-import model.chessboard.IChessBoard;
+
 import model.chessboard.IChessSquare;
-import model.chesscolor.EChessColor;
 import model.chesspiece.IChessPiece;
 
 /**
