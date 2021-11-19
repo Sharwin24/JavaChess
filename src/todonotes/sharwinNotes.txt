@@ -1,3 +1,4 @@
 Implement move timer
 Check for null in constructors and functions
 JavaDocs for chesspath
+Alter all chesspaths and possible moves to factor in checks

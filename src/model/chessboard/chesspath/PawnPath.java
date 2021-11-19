@@ -7,6 +7,10 @@ import model.chessboard.IChessSquare;
 import model.chesspiece.IChessPiece;
 import model.utility.ChessUtils.EChessColor;
 
+/**
+ * A Class representing a path a pawn can take on a chessboard. Includes captures,
+ * 2 square moves, and en passant.
+ */
 public class PawnPath extends AChessPath {
 
   /**

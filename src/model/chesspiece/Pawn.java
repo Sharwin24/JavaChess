@@ -1,5 +1,6 @@
 package model.chesspiece;
 
+import java.util.ArrayList;
 import java.util.List;
 import model.chessboard.IChessBoard;
 import model.chessboard.IChessSquare;
@@ -16,30 +17,50 @@ public class Pawn extends ADiscreteChessPiece {
   public boolean hasMoved;
 
   public Pawn(ChessUtils.EChessColor color,
-              IChessSquare startingSquare) {
+      IChessSquare startingSquare) {
     super(color, "♟", "♙", startingSquare);
     this.hasMoved = false;
   }
 
   @Override
   public List<IChessSquare> possibleMoves(IChessBoard chessBoard) throws IllegalStateException {
-    if (!chessBoard.getSquare(this.file,this.rank).hasPiece() ||
-        chessBoard.getSquare(this.file,this.rank).getPiece() != this) {
+    if (!chessBoard.getSquare(this.file, this.rank).hasPiece() ||
+        chessBoard.getSquare(this.file, this.rank).getPiece() != this) {
       throw new IllegalStateException("Invalid board given");
     }
+    List<IChessSquare> squares = new ArrayList<>();
     // Possible moves:
     // If (firstMove and white) -> (0,+2)
     // If (firstMove and black) -> (0,-2)
-    // If (!firstMove and white) -> (0,+1)
-    // If (!firstMove and black) -> (0,-1)
+    // If (white) -> (0,+1)
+    // If (black) -> (0,-1)
     // If (white and captureRight) -> (+1,+1)
     // If (white and captureLeft) -> (-1,+1)
     // If (black and captureRight) -> (+1,-1)
     // If (black and captureLeft) -> (-1,-1)
     // If destSquare is an enpassant square, then it's a valid move
     // and the above moves still apply
-    IChessPath p = new PawnPath(chessBoard,this.getSquare(),-2,4);
-    return null;
+    List<IChessPath> pathsToValidate = new ArrayList<>();
+    switch (this.getColor()) {
+      case WHITE:
+        pathsToValidate.add(new PawnPath(chessBoard, this.getSquare(), 0, 2));
+        pathsToValidate.add(new PawnPath(chessBoard, this.getSquare(), 0, 1));
+        pathsToValidate.add(new PawnPath(chessBoard, this.getSquare(), 1, 1));
+        pathsToValidate.add(new PawnPath(chessBoard, this.getSquare(), -1, 1));
+        break;
+      case BLACK:
+        pathsToValidate.add(new PawnPath(chessBoard, this.getSquare(), 0, -2));
+        pathsToValidate.add(new PawnPath(chessBoard, this.getSquare(), 0, -1));
+        pathsToValidate.add(new PawnPath(chessBoard, this.getSquare(), 1, -1));
+        pathsToValidate.add(new PawnPath(chessBoard, this.getSquare(), -1, -1));
+        break;
+    }
+    for (IChessPath path : pathsToValidate) {
+      if (!path.invalidPath()) {
+        squares.addAll(path.getPathOrder());
+      }
+    }
+    return squares;
   }
 
   @Override
