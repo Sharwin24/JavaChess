@@ -8,7 +8,7 @@ import model.utility.ChessUtils;
 /**
  * Class to represent a Pawn chess piece.
  */
-public class Pawn extends AChessPiece {
+public class Pawn extends ADiscreteChessPiece {
 
   // Mechanic for the pawn's ability to move forward 2 spaces
   public boolean hasMoved;

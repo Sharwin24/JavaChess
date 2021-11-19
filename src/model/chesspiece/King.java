@@ -10,7 +10,7 @@ import model.utility.ChessUtils;
  * unique mechanics since it is unable to be captured, and
  * its position on the board affects move legality.
  */
-public class King extends AChessPiece {
+public class King extends ADiscreteChessPiece {
 
   private boolean hasCastled;
 
@@ -44,7 +44,7 @@ public class King extends AChessPiece {
    * a <i>castle</i> move
    */
   public boolean givenMoveIsCastle(IChessBoard board, IChessSquare destinationSquare) {
-    return false;
+    return false; // TODO: Can remove
   }
 
   @Override

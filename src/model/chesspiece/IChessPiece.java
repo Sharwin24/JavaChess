@@ -39,7 +39,7 @@ public interface IChessPiece {
    */
   List<IChessSquare> possibleMoves(IChessBoard chessBoard) throws IllegalStateException;
 
-  /**
+  /** TODO: Can maybe remove
    * Determines if this chess piece can move to the given square on the given board.
    * If the given board does not contain this piece on its square, an exception is thrown.
    * @param chessBoard the board to determine if the given move is possible or not
