@@ -33,6 +33,19 @@ public class ChessSquare implements IChessSquare {
   }
 
   /**
+   * Constructs a <code>ChessSquare</code> given a color, location, and piece to start with.
+   *
+   * @param color An <code>EChessColor</code> representing the color of this square
+   * @param file  The file or 'column' of this square
+   * @param rank  The rank or 'row' of this square
+   * @param piece A <code>IChessPiece</code> to start on this square.
+   */
+  public ChessSquare(EChessColor color, int file, int rank, IChessPiece piece) {
+    this(color, file, rank);
+    this.piece = piece;
+  }
+
+  /** TODO JAVADOC
    * copy ctor with ability to remove a piece
    */
   public ChessSquare(IChessSquare aSquare, boolean hasPiece) {
@@ -48,24 +61,11 @@ public class ChessSquare implements IChessSquare {
 
   }
 
-  /**
+  /** TODO JAVADOC
    * copy ctor that can place a piece
    */
   public ChessSquare(IChessSquare aSquare, IChessPiece aPiece) {
     this(aSquare.getSquareColor(),aSquare.getFile(), aSquare.getRank(),aPiece);
-  }
-
-  /**
-   * Constructs a <code>ChessSquare</code> given a color, location, and piece to start with.
-   *
-   * @param color An <code>EChessColor</code> representing the color of this square
-   * @param file  The file or 'column' of this square
-   * @param rank  The rank or 'row' of this square
-   * @param piece A <code>IChessPiece</code> to start on this square.
-   */
-  public ChessSquare(EChessColor color, int file, int rank, IChessPiece piece) {
-    this(color, file, rank);
-    this.piece = piece;
   }
 
   @Override
