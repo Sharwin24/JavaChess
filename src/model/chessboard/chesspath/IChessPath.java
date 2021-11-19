@@ -25,8 +25,8 @@ public interface IChessPath {
 
   /**
    * Gets the path as a list of squares. The list contains in order every square after the start
-   * square until the destination square. If the path is out of bounds or is of the same piece or is
-   * after a able-to-be-captured piece, then the path will be empty.
+   * square until the destination square. If the path is out of bounds or is obstructed by its own
+   * piece or is after an able-to-be-captured piece, then the path will be empty.
    *
    * @return a list of Squares, in order of the path.
    */

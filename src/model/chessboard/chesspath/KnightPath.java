@@ -26,17 +26,17 @@ public class KnightPath extends AChessPath {
 
   @Override
   public List<IChessSquare> getPathOrder() {
-    List<IChessSquare> squares = new ArrayList<>();
+    List<IChessSquare> path = new ArrayList<>();
     // Path is only destination square from start square
     try {
       IChessSquare destSquare =
           chessBoard.getSquare(this.startingSquare.getFile() + this.fileDelta,
               this.startingSquare.getRank() + this.rankDelta);
-      squares.add(destSquare);
+      path.add(destSquare);
     } catch (IndexOutOfBoundsException ignored) {
       // Should only catch IndexException, any other exceptions imply a bug
     }
-    return squares;
+    return path;
   }
 
   @Override

@@ -23,9 +23,13 @@ public abstract class AChessPath implements IChessPath {
    * @param startingSquare the starting square for the path.
    * @param fileDelta      the deviation in file from the starting square
    * @param rankDelta      the deviation in rank from the starting square
+   * @throws IllegalStateException if the given starting square does not containg a piece
    */
   protected AChessPath(IChessBoard board, IChessSquare startingSquare, int fileDelta,
-      int rankDelta) {
+      int rankDelta) throws IllegalStateException {
+    if (!startingSquare.hasPiece()) {
+      throw new IllegalStateException("Starting square does not contain piece");
+    }
     this.chessBoard = board;
     this.startingSquare = startingSquare;
     this.fileDelta = fileDelta;
