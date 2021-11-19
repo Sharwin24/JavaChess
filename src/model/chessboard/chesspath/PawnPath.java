@@ -27,21 +27,41 @@ public class PawnPath extends AChessPath {
   public List<IChessSquare> getPathOrder() {
     List<IChessSquare> path = new ArrayList<>();
     IChessPiece piece = startingSquare.getPiece();
-    // If first move
-    if (startingSquare.getRank() == 1 || startingSquare.getRank() == 6) {
-      // Only if fileDelta is zero
-      if (fileDelta == 0) {
-        if (piece.getColor() == EChessColor.WHITE && rankDelta > 0) {
-          IChessSquare destSquare =
-              chessBoard.getSquare(this.startingSquare.getFile() + fileDelta,
-                  this.startingSquare.getRank() + rankDelta);
-        } else if (piece.getColor() == EChessColor.BLACK && rankDelta < 0) {
 
+    if (invalidPath()) {
+      return path;
+    }
+    if (fileDelta == 0 && rankDelta > 0) { // white pawn moving up any squares
+      for (int move = 0; move < rankDelta; move++) {
+        try {
+          IChessSquare squareOnPath = chessBoard.getSquare(startingSquare.getFile(),
+              startingSquare.getRank() + move);
+          path.add(squareOnPath);
+        } catch (IndexOutOfBoundsException e) {
+          break;
         }
+      }
+    } else if (fileDelta == 0 && rankDelta < 0) { // black pawn moving down any squares
+      for (int move = 0; move < Math.abs(rankDelta); move++) {
+        try {
+          IChessSquare squareOnPath = chessBoard.getSquare(startingSquare.getFile(),
+              startingSquare.getRank() - move);
+          path.add(squareOnPath);
+        } catch (IndexOutOfBoundsException e) {
+          break;
+        }
+      }
+    } else if (Math.abs(fileDelta) == 1 && Math.abs(rankDelta) == 1) {
+      try {
+        IChessSquare destSquare = chessBoard.getSquare(this.startingSquare.getFile() + fileDelta,
+            this.startingSquare.getRank() + rankDelta);
+        path.add(destSquare);
+      } catch (IndexOutOfBoundsException ignored) {
+        // Don't add square to path
       }
     }
 
-    return null;
+    return path;
   }
 
   @Override
@@ -51,23 +71,23 @@ public class PawnPath extends AChessPath {
         this.startingSquare.getRank() + rankDelta);
     // If it's a one or two square move up and starting white pawn
     if (fileDelta == 0 && (rankDelta == 1 || rankDelta == 2)
-        && piece.getColor() == EChessColor.WHITE && startingSquare.getRank() == 1) {
-
+        && piece.getColor() == EChessColor.WHITE
+        && startingSquare.getRank() == 1) {
       if (rankDelta == 1) {
         return destSquare.hasPiece();
       } else {
-        return chessBoard.getSquare(this.startingSquare.getFile() + fileDelta,
+        return chessBoard.getSquare(this.startingSquare.getFile(),
             this.startingSquare.getRank() + (rankDelta - 1)).hasPiece() && destSquare.hasPiece();
       }
     }
     // If it's a one or two square move down and starting black pawn
     if (fileDelta == 0 && (rankDelta == -1 || rankDelta == -2)
-        && piece.getColor() == EChessColor.BLACK && startingSquare.getRank() == 6) {
-
+        && piece.getColor() == EChessColor.BLACK
+        && startingSquare.getRank() == 6) {
       if (rankDelta == -1) {
         return destSquare.hasPiece();
       } else {
-        return chessBoard.getSquare(this.startingSquare.getFile() + fileDelta,
+        return chessBoard.getSquare(this.startingSquare.getFile(),
             this.startingSquare.getRank() + (rankDelta + 1)).hasPiece() && destSquare.hasPiece();
       }
     }
@@ -76,8 +96,7 @@ public class PawnPath extends AChessPath {
         if (piece.getColor() == EChessColor.WHITE) {
           return !((fileDelta == 1 && rankDelta == 1)
               || (fileDelta == -1 && rankDelta == 1));
-        }
-        else if (piece.getColor() == EChessColor.BLACK) {
+        } else if (piece.getColor() == EChessColor.BLACK) {
           return !((fileDelta == 1 && rankDelta == -1)
               || (fileDelta == -1 && rankDelta == -1));
         }
