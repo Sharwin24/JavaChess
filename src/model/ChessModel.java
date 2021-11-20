@@ -1,17 +1,13 @@
 package model;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import model.chessboard.ChessBoard;
 import model.chessboard.ChessSquare;
 import model.chessboard.IChessBoard;
 import model.chessboard.IChessSquare;
-import model.chesscolor.EChessColor;
 import model.chesspiece.IChessPiece;
 import model.utility.ChessUtils;
-import model.utility.Utils;
 
 /**
  * An implementation of <code>IChessModel</code> to run a Chess game. The model provides utility for
@@ -20,19 +16,23 @@ import model.utility.Utils;
 public class ChessModel implements IChessModel {
 
   private IChessBoard chessBoard;
-  private EChessColor currentPlayerTurn;
+  private ChessUtils.EChessColor currentPlayerTurn;
+  private List<IChessPiece> capturedBlackPieces;
+  private List<IChessPiece> capturedWhitePieces;
 
   /**
    * Constructs a <code>ChessModel</code> with a given starting board and player turn. The starting
    * board is <i>not</i> necessarily a reset board.
    *
    * @param chessBoard An <code>IChessBoard</code> for the starting board
-   * @param playerTurn A <code>EChessColor</code> representing the player's turn for the given
+   * @param playerTurn A <code>ChessUtils.EChessColor</code> representing the player's turn for the given
    *                   starting board.
    */
-  public ChessModel(IChessBoard chessBoard, EChessColor playerTurn) {
+  public ChessModel(IChessBoard chessBoard, ChessUtils.EChessColor playerTurn) {
     this.chessBoard = chessBoard;
     this.currentPlayerTurn = playerTurn;
+    this.capturedWhitePieces = new ArrayList<>();
+    this.capturedBlackPieces = new ArrayList<>();
   }
 
   /**
@@ -40,54 +40,23 @@ public class ChessModel implements IChessModel {
    * color.
    */
   public ChessModel() {
-    this.chessBoard = new ChessBoard();
-    this.currentPlayerTurn = EChessColor.WHITE;
+    this(new ChessBoard(), ChessUtils.EChessColor.WHITE);
   }
 
   @Override
-  public void resetBoard() {
-    this.chessBoard.initBoard();
-    this.currentPlayerTurn = EChessColor.WHITE;
-    // Reset timer
+  public void playGame() {
+
   }
 
-//  private static final Map<EChessColor, IChessMove> moveStylesMap = initMoveStylesMap;
-//  private static Map<EChessColor, IChessMove> initMoveStylesMap() {
-//    Map<EChessColor, ChessMove> moveStylesMap = new HashMap<>();
-//    moveStylesMap.putIfAbsent(null, new MoveToEmptySquare());
-//    moveStylesMap.putIfAbsent(EChessColor.WHITE, new MoveToSquareContainingWhitePiece());
-//    moveStylesMap.putIfAbsent(EChessColor.BLACK, new MoveToSquareContainingBlackPiece());
-//
-//    return moveStylesMap;
-//  }
-//
-//  /**
-//   * A function object that consumes a chess piece to move and
-//   * a square to move to, and returns a new
-//   * board depending where the move has been executed one of three ways (implementations):
-//   * <ol>
-//   *   <li>a move to a square containing a white piece</li>
-//   *   <li>a move to a square containing a black piece</li>
-//   *   <li>a move to a square containing no piece</li>
-//   * </ol>
-//   */
-//  private interface IChessMove {
-//    IChessBoard executeMove(IChessPiece pieceToMove, IChessSquare destinationSquare);
-//  }
-//
-//  /**
-//   * Returns a [Maybe EChessColor], where a [Maybe X] is either an X or null.
-//   * @param returnMyPieceColorOrNull the square whose piece color, or null, will be returned
-//   * @return a [Maybe EChessColor] representing the color of the piece on the given square, or null
-//   * if there is no piece on the given square.
-//   */
-//  private static EChessColor pieceColorSwitcher(IChessSquare returnMyPieceColorOrNull) {
-//    if (!returnMyPieceColorOrNull.hasPiece()) {
-//      return null;
-//    }
-//
-//    return returnMyPieceColorOrNull.getPiece().getColor();
-//  }
+  @Override
+  public List<IChessPiece> getCapturedBlackPieces() {
+    return this.capturedBlackPieces;
+  }
+
+  @Override
+  public List<IChessPiece> getCapturedWhitePieces() {
+    return this.capturedWhitePieces;
+  }
 
   @Override
   public void move(IChessPiece pieceToMove, IChessSquare destinationSquare) {
@@ -102,7 +71,7 @@ public class ChessModel implements IChessModel {
     }
 
     if (destinationSquare.hasPiece() &&
-        destinationSquare.getPiece().getColor() != currentPlayerTurn) {
+        destinationSquare.getPiece().getColor() != this.currentPlayerTurn) {
       this.chessBoard.setChessBoardArray(moveHelp(pieceToMove, destinationSquare));
       // TODO: add the piece that got taken to a graveyard/win pile for each player
     } else if (!destinationSquare.hasPiece()) {
@@ -117,8 +86,8 @@ public class ChessModel implements IChessModel {
   /** TODO JavaDoc
    * given a valid move, returns the new state of the board, with <strong><i>swag</i></strong>
    *
-   * @param pieceToMove
-   * @param destinationSquare
+   * @param pieceToMove the piece to move
+   * @param destinationSquare the square to move the given piece to
    * @return
    */
   private List<List<IChessSquare>> moveHelp(IChessPiece pieceToMove,

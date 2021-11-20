@@ -1,9 +1,11 @@
 package model.chessboard;
 
+import java.util.List;
 import java.util.Objects;
-import model.chesscolor.EChessColor;
+
 import model.chesspiece.IChessPiece;
 import model.utility.ChessUtils;
+import model.utility.ChessUtils.EChessColor;
 
 /**
  * Implementation of <code>IChessSquare</code>. Represents a Chess Square that is a container for a
@@ -12,7 +14,7 @@ import model.utility.ChessUtils;
  */
 public class ChessSquare implements IChessSquare {
 
-  private final EChessColor color;
+  private final ChessUtils.EChessColor color;
   private final int file;
   private final int rank;
   private IChessPiece piece;
@@ -25,25 +27,14 @@ public class ChessSquare implements IChessSquare {
    * @param file  The file or 'column' of this square
    * @param rank  The rank or 'row' of this square
    */
-  public ChessSquare(EChessColor color, int file, int rank) {
+  public ChessSquare(ChessUtils.EChessColor color, int file, int rank) {
     this.color = color;
     this.file = file;
     this.rank = rank;
     this.piece = null;
   }
 
-  /**
-   * Constructs a <code>ChessSquare</code> given a color, location, and piece to start with.
-   *
-   * @param color An <code>EChessColor</code> representing the color of this square
-   * @param file  The file or 'column' of this square
-   * @param rank  The rank or 'row' of this square
-   * @param piece A <code>IChessPiece</code> to start on this square.
-   */
-  public ChessSquare(EChessColor color, int file, int rank, IChessPiece piece) {
-    this(color, file, rank);
-    this.piece = piece;
-  }
+
 
   /** TODO JAVADOC
    * copy ctor with ability to remove a piece
@@ -65,11 +56,24 @@ public class ChessSquare implements IChessSquare {
    * copy ctor that can place a piece
    */
   public ChessSquare(IChessSquare aSquare, IChessPiece aPiece) {
-    this(aSquare.getSquareColor(),aSquare.getFile(), aSquare.getRank(),aPiece);
+    this(aSquare.getSquareColor(), aSquare.getFile(), aSquare.getRank(), aPiece);
+  }
+
+  /**
+   * Constructs a <code>ChessSquare</code> given a color, location, and piece to start with.
+   *
+   * @param color An <code>EChessColor</code> representing the color of this square
+   * @param file  The file or 'column' of this square
+   * @param rank  The rank or 'row' of this square
+   * @param piece A <code>IChessPiece</code> to start on this square.
+   */
+  public ChessSquare(ChessUtils.EChessColor color, int file, int rank, IChessPiece piece) {
+    this(color, file, rank);
+    this.piece = piece;
   }
 
   @Override
-  public EChessColor getSquareColor() {
+  public ChessUtils.EChessColor getSquareColor() {
     return this.color;
   }
 
@@ -110,15 +114,58 @@ public class ChessSquare implements IChessSquare {
   }
 
   @Override
+  public EChessSquareStartingPiece determineStartPiece() {
+    if (ChessUtils.isRookSquare(this)) {
+      if (this.rank == 0) {
+        return EChessSquareStartingPiece.WROOK;
+      } else if (this.rank == 7) {
+        return EChessSquareStartingPiece.BROOK;
+      }
+    } else if (ChessUtils.isKnightSquare(this)) {
+      if (this.rank == 0) {
+        return EChessSquareStartingPiece.WKNIGHT;
+      } else if (this.rank == 7) {
+        return EChessSquareStartingPiece.BKNIGHT;
+      }
+    } else if (ChessUtils.isBishopSquare(this)) {
+      if (this.rank == 0) {
+        return EChessSquareStartingPiece.WBISHOP;
+      } else if (this.rank == 7) {
+        return EChessSquareStartingPiece.BBISHOP;
+      }
+    } else if (ChessUtils.isQueenSquare(this)) {
+      if (this.rank == 0) {
+        return EChessSquareStartingPiece.WQUEEN;
+      } else if (this.rank == 7) {
+        return EChessSquareStartingPiece.BQUEEN;
+      }
+    } else if (ChessUtils.isKingSquare(this)) {
+      if (this.rank == 0) {
+        return EChessSquareStartingPiece.WKING;
+      } else if (this.rank == 7) {
+        return EChessSquareStartingPiece.BKING;
+      }
+    } else if (ChessUtils.isPawnSquare(this)) {
+      if (this.rank == 1) {
+        return EChessSquareStartingPiece.WPAWN;
+      } else if (this.rank == 6) {
+        return EChessSquareStartingPiece.BPAWN;
+      }
+    }
+    // Empty starting square
+    return EChessSquareStartingPiece.EMPTY;
+  }
+
+  @Override
   public String toString() {
     if (this.hasPiece()) {
-      return this.piece.toString();
+      return this.piece.toString() + ChessUtils.fileLetter(this.file) + (this.rank + 1);
     } else {
       switch (this.color) { // TODO: Print square with piece on it?
         case BLACK:
-          return "⬛" + ChessUtils.fileLetter(this.file) + this.rank; // Black box
+          return "⬜" + ChessUtils.fileLetter(this.file) + (this.rank + 1); // Black box
         case WHITE:
-          return "⬜" + ChessUtils.fileLetter(this.file) + this.rank; // White box
+          return "⬛" + ChessUtils.fileLetter(this.file) + (this.rank + 1); // White box
         default:
           throw new IllegalArgumentException("Invalid Square Color");
       }
@@ -139,12 +186,11 @@ public class ChessSquare implements IChessSquare {
     ChessSquare that = (ChessSquare) o;
     return this.file == that.file
         && this.rank == that.rank
-        && this.color == that.color
-        && this.piece == that.piece;
+        && this.color == that.color;
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(this.color, this.file, this.rank, this.piece);
+    return Objects.hash(this.color, this.file, this.rank);
   }
 }

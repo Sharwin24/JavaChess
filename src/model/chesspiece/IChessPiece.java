@@ -3,7 +3,7 @@ package model.chesspiece;
 import java.util.List;
 import model.chessboard.IChessBoard;
 import model.chessboard.IChessSquare;
-import model.chesscolor.EChessColor;
+import model.utility.ChessUtils;
 
 /**
  * Representation of a Chess Piece. Offers functionality to get the
@@ -27,7 +27,7 @@ public interface IChessPiece {
    * Gets the piece's color;
    * @return an Enum representing the piece's color
    */
-  EChessColor getColor();
+  ChessUtils.EChessColor getColor();
 
   /**
    * Gets a list of the possible moves the piece can make given the
@@ -39,7 +39,7 @@ public interface IChessPiece {
    */
   List<IChessSquare> possibleMoves(IChessBoard chessBoard) throws IllegalStateException;
 
-  /**
+  /** TODO: Can maybe remove
    * Determines if this chess piece can move to the given square on the given board.
    * If the given board does not contain this piece on its square, an exception is thrown.
    * @param chessBoard the board to determine if the given move is possible or not

@@ -2,7 +2,11 @@ package model.chessboard;
 
 import java.util.ArrayList;
 import java.util.List;
+
 import model.chesspiece.IChessPiece;
+import model.utility.ChessUtils;
+import model.utility.ChessUtils.EChessColor;
+import model.utility.Utils;
 
 /**
  * Class representing the ChessBoard and its attributes.
@@ -12,16 +16,24 @@ public class ChessBoard implements IChessBoard {
   public static final int BOARD_SIZE = 8;
 
   private List<List<IChessSquare>> chessBoard;
-  private List<IChessSquare> enPassantSquares;
+  private IChessSquare enPassantSquare;
+
+  // For FEN Notation
+  private int halfMoveCounter;
+  private int fullMoveCounter;
 
   public ChessBoard(List<List<IChessSquare>> chessBoard) {
     this.chessBoard = chessBoard;
-    this.enPassantSquares = new ArrayList<>();
+    this.enPassantSquare = null;
+    this.halfMoveCounter = 0;
+    this.fullMoveCounter = 0; // Not neccessarily correct
   }
 
   public ChessBoard() {
     this.chessBoard = this.getResetChessBoardArr();
-    this.enPassantSquares = new ArrayList<>();
+    this.enPassantSquare = null;
+    this.halfMoveCounter = 0;
+    this.fullMoveCounter = 0;
   }
 
   /**
@@ -30,24 +42,54 @@ public class ChessBoard implements IChessBoard {
    * @return a list of list of <code>IChessSquare</code>
    */
   private List<List<IChessSquare>> getResetChessBoardArr() {
-    // TODO
-    return null;
+    List<List<IChessSquare>> boardArray = new ArrayList<>();
+    for (int row = 0; row < 8; row++) {
+      boardArray.add(new ArrayList<>());
+      ChessUtils.EChessColor colorAcc = (row + 1) % 2 == 0 ? EChessColor.BLACK : EChessColor.WHITE;
+      for (int col = 0; col < 8; col++) {
+        IChessSquare square = new ChessSquare(colorAcc, col, (8 - 1) - row);
+        IChessPiece pieceToPlace = ChessUtils.getStartPieceForSquare(square);
+        if (pieceToPlace != null) { // Empty square
+          square.placePiece(pieceToPlace);
+        }
+        boardArray.get(row).add(square);
+        colorAcc = ChessUtils.switchColor(colorAcc);
+      }
+    }
+    return boardArray;
   }
 
-  @Override
-  public void initBoard() {
-    // Sets up the chess board
-  }
-
-  @Override
-  public boolean isValidBoardArray(List<List<IChessSquare>> boardToValidate) {
+  /**
+   * Determines if the given board is a legal chess board or not
+   *
+   * @param boardToValidate A 2D board array to validate.
+   * @return a boolean whether the given board is valid or not.
+   */
+  private boolean isValidBoardArray(List<List<IChessSquare>> boardToValidate) {
     // TODO: Size 64, Correct colors, ...
     return false;
   }
 
   @Override
   public String getFENString() {
-    return null;
+    // TODO: Parse board and build FEN notation
+    // [https://en.wikipedia.org/wiki/Forsyth%E2%80%93Edwards_Notation]
+    // Starting position: rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1
+    // After move e4:     rnbqkbnr/pppppppp/8/8/8/4P3/PPPP1PPP/RNBQKBNR B KQkq e3 0 1
+    // 1. Board: Starts with rank 8, each rank is delineated by a '/'
+    //           lowercase letters are black pieces, uppercase is white
+    // 2. Player's move: 'w' or 'b'
+    // 3. Castling: 'K' and 'Q' represents white can castle kingside or queenside
+    //              'k' and 'q' are for black.
+    //              If no one can castle this is '-'
+    // 4. En Passant Target Square: '-' if there is none, otherwise if a pawn
+    //                              has just made a 2 square move, it's the square
+    //                              behind them. (ex: P -> e4, en passant sq === e3)
+    // 5. Half-move Counter: Number of half moves since the last capture or pawn advance,
+    //                      for the fifty-move rule.
+    // 6. Full-move Counter: The number of the full move. Starting at 1,
+    //                       incrementing after black's move
+    return "";
   }
 
   @Override
@@ -56,33 +98,49 @@ public class ChessBoard implements IChessBoard {
   }
 
   @Override
-  public void setChessBoardArray(List<List<IChessSquare>> squares) {
-    this.chessBoard = squares;
-  }
-
-  @Override
   public IChessSquare getSquare(int file, int rank) throws IndexOutOfBoundsException {
-    if (file <= 0 || file > 8 || rank <= 0 || rank > 8) { //TODO: Enforce indexing
+    if (!Utils.inBounds(file, 0, 7) || !Utils.inBounds(rank, 0, 7)) {
       throw new IndexOutOfBoundsException("Square position out of bounds!");
     }
-    return this.chessBoard.get(8 - rank).get(file);
+    return this.chessBoard.get((8 - 1) - rank).get(file);
   }
 
   @Override
   public boolean canMovePieceToSquare(IChessPiece pieceToMove, IChessSquare destSquare) {
-    return false;
+    return pieceToMove.possibleMoves(this).contains(destSquare); // TODO: test?
   }
 
   @Override
-  public boolean isLegalMoveCapture(IChessPiece pieceToMove, IChessSquare destSquare) {
-    return canMovePieceToSquare(pieceToMove, destSquare) && destSquare.hasPiece();
+  public boolean isMoveLegalAndCapture(IChessPiece pieceToMove, IChessSquare destSquare) {
+    return this.canMovePieceToSquare(pieceToMove, destSquare) && destSquare.hasPiece();
   }
 
   @Override
-  public List<IChessSquare> enPassantSquares() {
-    return this.enPassantSquares;
+  public IChessSquare enPassantSquare() {
+    return this.enPassantSquare;
   }
 
+  @Override
+  public void setChessBoardArray(List<List<IChessSquare>> squares) throws IllegalArgumentException {
+    if (squares == null || !isValidBoardArray(squares)) {
+      throw new IllegalArgumentException("Invalid board array given");
+    }
+    this.chessBoard = squares;
+  }
+
+  @Override
+  public List<IChessSquare> attackedBy(EChessColor attackingColor) {
+    List<IChessSquare> squares = new ArrayList<>();
+    for (int row = 0; row < 8; row++) {
+      for (int col = 0; col < 8; col++) {
+        if (this.chessBoard.get(row).get(col).hasPiece()
+            && this.chessBoard.get(row).get(col).getPiece().getColor() == attackingColor) {
+          squares.addAll(chessBoard.get(row).get(col).getPiece().possibleMoves(this));
+        }
+      }
+    }
+    return squares;
+  }
 
 
   @Override

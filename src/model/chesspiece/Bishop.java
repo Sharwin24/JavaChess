@@ -7,8 +7,8 @@ import java.util.Map;
 import java.util.function.Function;
 import model.chessboard.IChessBoard;
 import model.chessboard.IChessSquare;
-import model.chesscolor.EChessColor;
 import model.utility.Utils.Pair;
+import model.utility.ChessUtils;
 
 /**
  * Class to represent a Bishop. Bishops can move diagonally.
@@ -21,8 +21,8 @@ public class Bishop extends AChessPiece {
    * @param startingSquare The <code>IChessSquare</code> representing the starting
    *                       square for the piece.
    */
-  protected Bishop(EChessColor color,
-      IChessSquare startingSquare) {
+  public Bishop(ChessUtils.EChessColor color,
+                IChessSquare startingSquare) {
     super(color, "♝", "♗", startingSquare);
   }
 

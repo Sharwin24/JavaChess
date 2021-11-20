@@ -4,25 +4,44 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.function.Function;
+import model.chessboard.ChessSquare;
 import model.chessboard.IChessSquare;
+import model.chesspiece.Bishop;
+import model.chesspiece.IChessPiece;
+import model.chesspiece.King;
+import model.chesspiece.Knight;
+import model.chesspiece.Pawn;
+import model.chesspiece.Queen;
+import model.chesspiece.Rook;
 
 /**
  * Utility class for Chess Utility functions
  */
 public final class ChessUtils {
 
-  private static final HashMap<Integer, String> fileMap
-      = new HashMap<>(8);
+  public enum EChessColor {
+    BLACK, WHITE
+  }
 
-  public ChessUtils() {
-    fileMap.put(0, "a");
-    fileMap.put(1, "b");
-    fileMap.put(2, "c");
-    fileMap.put(3, "d");
-    fileMap.put(4, "e");
-    fileMap.put(5, "f");
-    fileMap.put(6, "g");
-    fileMap.put(7, "h");
+  private static final HashMap<Integer, String> fileMap = new HashMap<>(8) {{
+    put(0, "a");
+    put(1, "b");
+    put(2, "c");
+    put(3, "d");
+    put(4, "e");
+    put(5, "f");
+    put(6, "g");
+    put(7, "h");
+  }};
+
+  /**
+   * Switches the given EChessColor. Black -> White, White -> Black
+   *
+   * @param color the color to switch
+   * @return an EChessColor
+   */
+  public static EChessColor switchColor(EChessColor color) {
+    return color == EChessColor.WHITE ? EChessColor.BLACK : EChessColor.WHITE;
   }
 
   /**
@@ -65,4 +84,116 @@ public final class ChessUtils {
     return mappedResult;
   }
 
+  /**
+   * Returns the IChessPiece that starts on the given square on a reset chess board.
+   *
+   * @param square the square the piece should start on
+   * @return the IChessPiece or <code>null</code> if the square starts empty
+   * @throws IllegalStateException if the square has null or has an invalid start piece enum
+   */
+  public static IChessPiece getStartPieceForSquare(IChessSquare square)
+      throws IllegalStateException {
+    if (square == null) {
+      throw new IllegalStateException("Square is null");
+    }
+    switch (square.determineStartPiece()) {
+      case WROOK:
+        return new Rook(EChessColor.WHITE, square);
+      case WKNIGHT:
+        return new Knight(EChessColor.WHITE, square);
+      case WBISHOP:
+        return new Bishop(EChessColor.WHITE, square);
+      case WQUEEN:
+        return new Queen(EChessColor.WHITE, square);
+      case WKING:
+        return new King(EChessColor.WHITE, square);
+      case WPAWN:
+        return new Pawn(EChessColor.WHITE, square);
+      case BROOK:
+        return new Rook(EChessColor.BLACK, square);
+      case BKNIGHT:
+        return new Knight(EChessColor.BLACK, square);
+      case BBISHOP:
+        return new Bishop(EChessColor.BLACK, square);
+      case BQUEEN:
+        return new Queen(EChessColor.BLACK, square);
+      case BKING:
+        return new King(EChessColor.BLACK, square);
+      case BPAWN:
+        return new Pawn(EChessColor.BLACK, square);
+      case EMPTY:
+        return null;
+      default:
+        throw new IllegalStateException("Square has invalid start piece enum");
+    }
+  }
+
+  /**
+   * Determines if the given square starts with a rook or not
+   *
+   * @param square the square to check
+   * @return a boolean whether the square should start with the piece or not
+   */
+  public static boolean isRookSquare(IChessSquare square) {
+    // a && (1 or 8) OR h && (1 or 8)
+    return (square.getFile() == 0 && (square.getRank() == 0 || square.getRank() == 7))
+        || (square.getFile() == 7 && (square.getRank() == 0 || square.getRank() == 7));
+  }
+
+  /**
+   * Determines if the given square starts with a knight or not
+   *
+   * @param square the square to check
+   * @return a boolean whether the square should start with the piece or not
+   */
+  public static boolean isKnightSquare(IChessSquare square) {
+    // b && (1 or 8) OR g && (1 or 8)
+    return (square.getFile() == 1 && (square.getRank() == 0 || square.getRank() == 7))
+        || (square.getFile() == 6 && (square.getRank() == 0 || square.getRank() == 7));
+  }
+
+  /**
+   * Determines if the given square starts with a bishop or not
+   *
+   * @param square the square to check
+   * @return a boolean whether the square should start with the piece or not
+   */
+  public static boolean isBishopSquare(ChessSquare square) {
+    // c && (1 or 8) OR f && (1 or 8)
+    return (square.getFile() == 2 && (square.getRank() == 0 || square.getRank() == 7))
+        || (square.getFile() == 5 && (square.getRank() == 0 || square.getRank() == 7));
+  }
+
+  /**
+   * Determines if the given square starts with a queen or not
+   *
+   * @param square the square to check
+   * @return a boolean whether the square should start with the piece or not
+   */
+  public static boolean isQueenSquare(ChessSquare square) {
+    // d && (1 or 8)
+    return square.getFile() == 3 && (square.getRank() == 0 || square.getRank() == 7);
+  }
+
+  /**
+   * Determines if the given square starts with a king or not
+   *
+   * @param square the square to check
+   * @return a boolean whether the square should start with the piece or not
+   */
+  public static boolean isKingSquare(ChessSquare square) {
+    // e && (1 or 8)
+    return square.getFile() == 4 && (square.getRank() == 0 || square.getRank() == 7);
+  }
+
+  /**
+   * Determines if the given square starts with a pawn or not
+   *
+   * @param square the square to check
+   * @return a boolean whether the square should start with the piece or not
+   */
+  public static boolean isPawnSquare(ChessSquare square) {
+    // (2 or 7)
+    return square.getRank() == 1 || square.getRank() == 6;
+  }
 }

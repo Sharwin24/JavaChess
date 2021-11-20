@@ -3,14 +3,14 @@ package model.chesspiece;
 import java.util.List;
 import model.chessboard.IChessBoard;
 import model.chessboard.IChessSquare;
-import model.chesscolor.EChessColor;
+import model.utility.ChessUtils;
 
 /**
  * Class to represent the King chess piece. This piece has
  * unique mechanics since it is unable to be captured, and
  * its position on the board affects move legality.
  */
-public class King extends AChessPiece {
+public class King extends ADiscreteChessPiece {
 
   private boolean hasCastled;
 
@@ -19,8 +19,8 @@ public class King extends AChessPiece {
    * @param color the piece's color
    * @param startingSquare the square to start on
    */
-  protected King(EChessColor color,
-      IChessSquare startingSquare) {
+  public King(ChessUtils.EChessColor color,
+              IChessSquare startingSquare) {
     super(color, "♚", "♔", startingSquare);
     this.hasCastled = false;
   }
@@ -44,7 +44,7 @@ public class King extends AChessPiece {
    * a <i>castle</i> move
    */
   public boolean givenMoveIsCastle(IChessBoard board, IChessSquare destinationSquare) {
-    return false;
+    return false; // TODO: Can remove
   }
 
   @Override
@@ -53,6 +53,17 @@ public class King extends AChessPiece {
         chessBoard.getSquare(this.file,this.rank).getPiece() != this) {
       throw new IllegalStateException("Invalid board given");
     }
+    // Possible moves:
+    // (0,+1) up
+    // (0,-1) down
+    // (+1,0) right
+    // (-1,0) left
+    // (+1,+1) RightUp
+    // (+1,-1) RightDown
+    // (-1,+1) LeftUp
+    // (-1,-1) LeftDown
+    // (-2,0) LongCastle
+    // (2,0) ShortCastle
     return null;
   }
 
