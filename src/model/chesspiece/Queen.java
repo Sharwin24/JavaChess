@@ -4,6 +4,7 @@ import java.util.List;
 import model.chessboard.IChessBoard;
 import model.chessboard.IChessSquare;
 import model.utility.ChessUtils;
+import model.utility.ChessUtils.EChessPieceType;
 
 /**
  * Class to represent Queen chess piece.
@@ -27,6 +28,11 @@ public class Queen extends AChessPiece {
       throw new IllegalStateException("Invalid board given");
     }
     return null;
+  }
+
+  @Override
+  public EChessPieceType getPieceType() {
+    return EChessPieceType.QUEEN;
   }
 
   @Override

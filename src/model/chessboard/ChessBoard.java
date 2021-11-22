@@ -4,8 +4,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 import model.chesspiece.IChessPiece;
+import model.chesspiece.Pawn;
 import model.utility.ChessUtils;
 import model.utility.ChessUtils.EChessColor;
+import model.utility.ChessUtils.EChessPieceType;
 import model.utility.Utils;
 
 /**
@@ -131,9 +133,18 @@ public class ChessBoard implements IChessBoard {
     List<IChessSquare> squares = new ArrayList<>();
     for (int row = 0; row < 8; row++) {
       for (int col = 0; col < 8; col++) {
-        if (this.chessBoard.get(row).get(col).hasPiece()
-            && this.chessBoard.get(row).get(col).getPiece().getColor() == attackingColor) {
-          squares.addAll(chessBoard.get(row).get(col).getPiece().possibleMoves(this));
+        if (this.chessBoard.get(row).get(col).hasPiece()) {
+          IChessPiece attackingPiece = this.chessBoard.get(row).get(col).getPiece();
+          if (attackingPiece.getColor() == attackingColor) {
+            if (attackingPiece.getPieceType() != EChessPieceType.PAWN
+                && attackingPiece.getPieceType() != EChessPieceType.KING) {
+              squares.addAll(attackingPiece.possibleMoves(this));
+            } else if (attackingPiece.getPieceType() == EChessPieceType.PAWN) {
+              squares.addAll()
+            } else if (attackingPiece.getPieceType() == EChessPieceType.KING) {
+              squares.addAll()
+            }
+          }
         }
       }
     }

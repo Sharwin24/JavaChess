@@ -1,5 +1,7 @@
 package model.chesspiece;
 
+import java.util.List;
+import model.chessboard.IChessBoard;
 import model.chessboard.IChessSquare;
 import model.utility.ChessUtils.EChessColor;
 
@@ -18,4 +20,11 @@ public abstract class ADiscreteChessPiece extends AChessPiece{
       String white, IChessSquare startingSquare) throws IllegalArgumentException {
     super(color, black, white, startingSquare);
   }
+
+  /**
+   * Gets a list of squares that this discrete piece can capture a piece on.
+   * @param chessBoard the board to find the possible captures on
+   * @return a list of <code>IChessSquare</code>
+   */
+  public abstract List<IChessSquare> possibleCaptures(IChessBoard chessBoard);
 }

@@ -9,6 +9,7 @@ import model.chessboard.IChessSquare;
 import model.chessboard.chesspath.IChessPath;
 import model.chessboard.chesspath.KnightPath;
 import model.utility.ChessUtils;
+import model.utility.ChessUtils.EChessPieceType;
 
 /**
  * Class to represent a Knight chess piece. A Knight can move in an L shape, and can jump over
@@ -60,6 +61,11 @@ public class Knight extends ADiscreteChessPiece {
       }
     }
     return moves;
+  }
+
+  @Override
+  public EChessPieceType getPieceType() {
+    return EChessPieceType.KNIGHT;
   }
 
   @Override

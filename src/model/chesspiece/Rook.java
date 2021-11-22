@@ -4,6 +4,7 @@ import java.util.List;
 import model.chessboard.IChessBoard;
 import model.chessboard.IChessSquare;
 import model.utility.ChessUtils;
+import model.utility.ChessUtils.EChessPieceType;
 
 /**
  * Class to represent a Rook chess piece. Rooks can move in a cardinal direction,
@@ -53,6 +54,11 @@ public class Rook extends AChessPiece {
       throw new IllegalStateException("Invalid board given");
     }
     return null;
+  }
+
+  @Override
+  public EChessPieceType getPieceType() {
+    return EChessPieceType.ROOK;
   }
 
   @Override

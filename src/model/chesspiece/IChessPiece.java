@@ -4,12 +4,19 @@ import java.util.List;
 import model.chessboard.IChessBoard;
 import model.chessboard.IChessSquare;
 import model.utility.ChessUtils;
+import model.utility.ChessUtils.EChessPieceType;
 
 /**
  * Representation of a Chess Piece. Offers functionality to get the
  * square this piece is on and the list of possible moves this piece can go to
  */
 public interface IChessPiece {
+
+  /**
+   * Gets this piece type as an enum
+   * @return an <code>enum</code> representing the piece's type
+   */
+  EChessPieceType getPieceType();
 
   /**
    * Gets the <code>IChessSquare</code> the piece is on.

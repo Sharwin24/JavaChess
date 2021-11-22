@@ -70,8 +70,13 @@ public class PawnPath extends AChessPath {
   @Override
   public boolean invalidPath() {
     IChessPiece piece = this.startingSquare.getPiece();
-    IChessSquare destSquare = chessBoard.getSquare(this.startingSquare.getFile() + fileDelta,
-        this.startingSquare.getRank() + rankDelta);
+    IChessSquare destSquare;
+    try {
+      destSquare = chessBoard.getSquare(this.startingSquare.getFile() + fileDelta,
+          this.startingSquare.getRank() + rankDelta);
+    } catch (IndexOutOfBoundsException e) {
+      return true;
+    }
     // If it's a one or two square move up and starting white pawn
     if (fileDelta == 0 && (rankDelta == 1 || rankDelta == 2)
         && piece.getColor() == EChessColor.WHITE

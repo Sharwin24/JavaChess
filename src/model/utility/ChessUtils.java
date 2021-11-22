@@ -23,6 +23,10 @@ public final class ChessUtils {
     BLACK, WHITE
   }
 
+  public enum EChessPieceType {
+    ROOK, KNIGHT, BISHOP, QUEEN, KING, PAWN
+  }
+
   private static final HashMap<Integer, String> fileMap = new HashMap<>(8) {{
     put(0, "a");
     put(1, "b");
@@ -158,7 +162,7 @@ public final class ChessUtils {
    * @param square the square to check
    * @return a boolean whether the square should start with the piece or not
    */
-  public static boolean isBishopSquare(ChessSquare square) {
+  public static boolean isBishopSquare(IChessSquare square) {
     // c && (1 or 8) OR f && (1 or 8)
     return (square.getFile() == 2 && (square.getRank() == 0 || square.getRank() == 7))
         || (square.getFile() == 5 && (square.getRank() == 0 || square.getRank() == 7));
@@ -170,7 +174,7 @@ public final class ChessUtils {
    * @param square the square to check
    * @return a boolean whether the square should start with the piece or not
    */
-  public static boolean isQueenSquare(ChessSquare square) {
+  public static boolean isQueenSquare(IChessSquare square) {
     // d && (1 or 8)
     return square.getFile() == 3 && (square.getRank() == 0 || square.getRank() == 7);
   }
@@ -181,7 +185,7 @@ public final class ChessUtils {
    * @param square the square to check
    * @return a boolean whether the square should start with the piece or not
    */
-  public static boolean isKingSquare(ChessSquare square) {
+  public static boolean isKingSquare(IChessSquare square) {
     // e && (1 or 8)
     return square.getFile() == 4 && (square.getRank() == 0 || square.getRank() == 7);
   }
@@ -192,7 +196,7 @@ public final class ChessUtils {
    * @param square the square to check
    * @return a boolean whether the square should start with the piece or not
    */
-  public static boolean isPawnSquare(ChessSquare square) {
+  public static boolean isPawnSquare(IChessSquare square) {
     // (2 or 7)
     return square.getRank() == 1 || square.getRank() == 6;
   }

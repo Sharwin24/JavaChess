@@ -4,9 +4,11 @@ import java.util.ArrayList;
 import java.util.List;
 import model.chessboard.IChessBoard;
 import model.chessboard.IChessSquare;
+import model.chessboard.chesspath.AChessPath;
 import model.chessboard.chesspath.IChessPath;
 import model.chessboard.chesspath.PawnPath;
 import model.utility.ChessUtils;
+import model.utility.ChessUtils.EChessPieceType;
 
 /**
  * Class to represent a Pawn chess piece.
@@ -64,6 +66,33 @@ public class Pawn extends ADiscreteChessPiece {
   }
 
   @Override
+  public List<IChessSquare> possibleCaptures(IChessBoard chessBoard) {
+    List<IChessPath> capturePaths = new ArrayList<>();
+    switch (this.getColor()) {
+      case WHITE:
+        capturePaths.add(new PawnPath(chessBoard, this.getSquare(), 1, 1));
+        capturePaths.add(new PawnPath(chessBoard, this.getSquare(), -1, 1));
+        break;
+      case BLACK:
+        capturePaths.add(new PawnPath(chessBoard, this.getSquare(), 1, -1));
+        capturePaths.add(new PawnPath(chessBoard, this.getSquare(), -1, -1));
+        break;
+    }
+    List<IChessSquare> squares = new ArrayList<>();
+    for (IChessPath path : capturePaths) {
+      if (!path.invalidPath()) {
+        squares.addAll(path.getPathOrder());
+      }
+    }
+    return squares;
+  }
+
+  @Override
+  public EChessPieceType getPieceType() {
+    return EChessPieceType.PAWN;
+  }
+
+  @Override
   public int getValue() {
     return 1;
   }
@@ -73,4 +102,6 @@ public class Pawn extends ADiscreteChessPiece {
       throws IllegalStateException {
     return false;
   }
+
+
 }
