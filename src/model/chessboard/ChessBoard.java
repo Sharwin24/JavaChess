@@ -3,7 +3,9 @@ package model.chessboard;
 import java.util.ArrayList;
 import java.util.List;
 
+import model.chesspiece.ADiscreteChessPiece;
 import model.chesspiece.IChessPiece;
+import model.chesspiece.King;
 import model.chesspiece.Pawn;
 import model.utility.ChessUtils;
 import model.utility.ChessUtils.EChessColor;
@@ -140,9 +142,11 @@ public class ChessBoard implements IChessBoard {
                 && attackingPiece.getPieceType() != EChessPieceType.KING) {
               squares.addAll(attackingPiece.possibleMoves(this));
             } else if (attackingPiece.getPieceType() == EChessPieceType.PAWN) {
-              squares.addAll()
+              Pawn attacker = (Pawn) attackingPiece;
+              squares.addAll(attacker.possibleCaptures(this));
             } else if (attackingPiece.getPieceType() == EChessPieceType.KING) {
-              squares.addAll()
+              King attacker = (King) attackingPiece;
+              squares.addAll(attacker.possibleCaptures(this));
             }
           }
         }
