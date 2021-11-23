@@ -1,10 +1,12 @@
 package model.chessboard.chesspath;
 
+import java.util.ArrayList;
 import java.util.List;
 import model.chessboard.IChessBoard;
 import model.chessboard.IChessSquare;
+import model.utility.ChessUtils;
 
-public class KingPath extends AChessPath{
+public class KingPath extends AChessPath {
 
   /**
    * Constructs an abstract ChessPath using a given board, starting square, and deltas for file and
@@ -22,7 +24,16 @@ public class KingPath extends AChessPath{
 
   @Override
   public List<IChessSquare> getPathOrder() {
-    return null;
+    List<IChessSquare> path = new ArrayList<>();
+    if (!invalidPath()) {
+      try {
+        path.add(chessBoard.getSquare(this.startingSquare.getFile() + fileDelta,
+            this.startingSquare.getRank() + rankDelta));
+      } catch (IndexOutOfBoundsException e) {
+        // Do nothing
+      }
+    }
+    return path;
   }
 
   @Override
@@ -31,7 +42,22 @@ public class KingPath extends AChessPath{
     // Cannot move to a square with a piece of the same color
     // Cannot capture a piece that is 'protected' (Create definition?)
     // Cannot move to a square that is 'protected'
-
-    return false;
+    IChessSquare destSquare;
+    try {
+      destSquare = chessBoard.getSquare(this.startingSquare.getFile() + fileDelta,
+          this.startingSquare.getRank() + rankDelta);
+    } catch (IndexOutOfBoundsException e) {
+      return true;
+    }
+    if (destSquare.hasPiece()) {
+      if (destSquare.getPiece().getColor() == this.startingSquare.getPiece().getColor()) {
+        return true;
+      } else { // If opposite color
+        return chessBoard.attackedBy(destSquare.getPiece().getColor()).contains(destSquare);
+      }
+    } else {
+      return chessBoard.attackedBy(
+          ChessUtils.switchColor(this.startingSquare.getPiece().getColor())).contains(destSquare);
+    }
   }
 }

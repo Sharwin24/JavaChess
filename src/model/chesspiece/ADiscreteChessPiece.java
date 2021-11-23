@@ -21,10 +21,6 @@ public abstract class ADiscreteChessPiece extends AChessPiece{
     super(color, black, white, startingSquare);
   }
 
-  /**
-   * Gets a list of squares that this discrete piece can capture a piece on.
-   * @param chessBoard the board to find the possible captures on
-   * @return a list of <code>IChessSquare</code>
-   */
+  @Override
   public abstract List<IChessSquare> possibleCaptures(IChessBoard chessBoard);
 }
