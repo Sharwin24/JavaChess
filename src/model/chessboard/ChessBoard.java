@@ -135,7 +135,7 @@ public class ChessBoard implements IChessBoard {
   }
 
   @Override
-  public List<IChessSquare> attackedBy(EChessColor attackingColor) {
+  public List<IChessSquare> squaresAttackedBy(EChessColor attackingColor) {
     List<IChessSquare> squares = new ArrayList<>();
     for (int row = 0; row < 8; row++) {
       for (int col = 0; col < 8; col++) {

@@ -87,7 +87,7 @@ public interface IChessBoard {
    * @param attackingColor the color of the attacking pieces
    * @return a list of IChessSquare that all of the given color pieces can move to.
    */
-  List<IChessSquare> attackedBy(EChessColor attackingColor);
+  List<IChessSquare> squaresAttackedBy(EChessColor attackingColor);
 
   // TODO: Docs
   boolean WhiteCastleKingSide();

@@ -85,10 +85,10 @@ public class KingPath extends AChessPath {
       if (destSquare.getPiece().getColor() == this.startingSquare.getPiece().getColor()) {
         return true;
       } else { // If opposite color
-        return chessBoard.attackedBy(destSquare.getPiece().getColor()).contains(destSquare);
+        return chessBoard.squaresAttackedBy(destSquare.getPiece().getColor()).contains(destSquare);
       }
     } else {
-      return chessBoard.attackedBy(
+      return chessBoard.squaresAttackedBy(
           ChessUtils.switchColor(this.startingSquare.getPiece().getColor())).contains(destSquare);
     }
   }
