@@ -2,3 +2,8 @@ Implement move timer
 Check for null in constructors and functions
 JavaDocs for chesspath
 Alter all chesspaths and possible moves to factor in checks
+
+
+KingPath:
+Determines if a given file and rank delta from a starting square
+to a destination square
