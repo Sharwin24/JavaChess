@@ -1,5 +1,7 @@
 package model.chesspiece;
 
+import static model.utility.ChessUtils.EChessPieceType.PAWN;
+
 import java.util.ArrayList;
 import java.util.List;
 import model.chessboard.IChessBoard;
@@ -65,7 +67,13 @@ public class Pawn extends ADiscreteChessPiece {
     return squares;
   }
 
-  @Override
+  /**
+   * Gets a list of squares that this pawn can capture a piece on.
+   *
+   * @param chessBoard the board to find the possible captures on
+   * @return a list of <code>IChessSquare</code>
+   * @throws IllegalStateException if given board doesn't contain this piece on its square.
+   */
   public List<IChessSquare> possibleCaptures(IChessBoard chessBoard) {
     List<IChessPath> capturePaths = new ArrayList<>();
     switch (this.getColor()) {
@@ -89,7 +97,7 @@ public class Pawn extends ADiscreteChessPiece {
 
   @Override
   public EChessPieceType getPieceType() {
-    return EChessPieceType.PAWN;
+    return PAWN;
   }
 
   @Override

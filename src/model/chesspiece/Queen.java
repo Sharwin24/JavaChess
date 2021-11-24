@@ -1,5 +1,7 @@
 package model.chesspiece;
 
+import static model.utility.ChessUtils.EChessPieceType.QUEEN;
+
 import java.util.List;
 import model.chessboard.IChessBoard;
 import model.chessboard.IChessSquare;
@@ -32,7 +34,7 @@ public class Queen extends AChessPiece {
 
   @Override
   public EChessPieceType getPieceType() {
-    return EChessPieceType.QUEEN;
+    return QUEEN;
   }
 
   @Override

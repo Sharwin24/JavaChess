@@ -20,7 +20,4 @@ public abstract class ADiscreteChessPiece extends AChessPiece{
       String white, IChessSquare startingSquare) throws IllegalArgumentException {
     super(color, black, white, startingSquare);
   }
-
-  @Override
-  public abstract List<IChessSquare> possibleCaptures(IChessBoard chessBoard);
 }

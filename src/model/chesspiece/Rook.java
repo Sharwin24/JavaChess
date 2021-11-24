@@ -1,5 +1,7 @@
 package model.chesspiece;
 
+import static model.utility.ChessUtils.EChessPieceType.ROOK;
+
 import java.util.List;
 import model.chessboard.IChessBoard;
 import model.chessboard.IChessSquare;
@@ -58,7 +60,7 @@ public class Rook extends AChessPiece {
 
   @Override
   public EChessPieceType getPieceType() {
-    return EChessPieceType.ROOK;
+    return ROOK;
   }
 
   @Override

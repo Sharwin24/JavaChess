@@ -51,15 +51,6 @@ public interface IChessPiece {
   List<IChessSquare> possibleMoves(IChessBoard chessBoard) throws IllegalStateException;
 
   /**
-   * Gets a list of squares that this discrete piece can capture a piece on.
-   *
-   * @param chessBoard the board to find the possible captures on
-   * @return a list of <code>IChessSquare</code>
-   * @throws IllegalStateException if given board doesn't contain this piece on its square.
-   */
-  List<IChessSquare> possibleCaptures(IChessBoard chessBoard) throws IllegalStateException;
-
-  /**
    * TODO: Can maybe remove
    * Determines if this chess piece can move to the given square on the given board.
    * If the given board does not contain this piece on its square, an exception is thrown.

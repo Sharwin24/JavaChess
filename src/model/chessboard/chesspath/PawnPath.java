@@ -1,5 +1,8 @@
 package model.chessboard.chesspath;
 
+import static model.utility.ChessUtils.EChessColor.BLACK;
+import static model.utility.ChessUtils.EChessColor.WHITE;
+
 import java.util.ArrayList;
 import java.util.List;
 import model.chessboard.IChessBoard;
@@ -79,7 +82,7 @@ public class PawnPath extends AChessPath {
     }
     // If it's a one or two square move up and starting white pawn
     if (fileDelta == 0 && (rankDelta == 1 || rankDelta == 2)
-        && piece.getColor() == EChessColor.WHITE
+        && piece.getColor() == WHITE
         && startingSquare.getRank() == 1) {
       if (rankDelta == 1) {
         return destSquare.hasPiece();
@@ -90,7 +93,7 @@ public class PawnPath extends AChessPath {
     }
     // If it's a one or two square move down and starting black pawn
     if (fileDelta == 0 && (rankDelta == -1 || rankDelta == -2)
-        && piece.getColor() == EChessColor.BLACK
+        && piece.getColor() == BLACK
         && startingSquare.getRank() == 6) {
       if (rankDelta == -1) {
         return destSquare.hasPiece();
@@ -102,10 +105,10 @@ public class PawnPath extends AChessPath {
     // If path leads to a capture
     if (destSquare.hasPiece()) {
       if (destSquare.getPiece().getColor() != piece.getColor()) {
-        if (piece.getColor() == EChessColor.WHITE) {
+        if (piece.getColor() == WHITE) {
           return !((fileDelta == 1 && rankDelta == 1)
               || (fileDelta == -1 && rankDelta == 1));
-        } else if (piece.getColor() == EChessColor.BLACK) {
+        } else if (piece.getColor() == BLACK) {
           return !((fileDelta == 1 && rankDelta == -1)
               || (fileDelta == -1 && rankDelta == -1));
         }

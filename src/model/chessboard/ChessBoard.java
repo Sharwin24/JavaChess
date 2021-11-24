@@ -1,5 +1,9 @@
 package model.chessboard;
 
+import static model.utility.ChessUtils.EChessColor.BLACK;
+import static model.utility.ChessUtils.EChessColor.WHITE;
+import static model.utility.ChessUtils.EChessPieceType.*;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -47,7 +51,7 @@ public class ChessBoard implements IChessBoard {
     List<List<IChessSquare>> boardArray = new ArrayList<>();
     for (int row = 0; row < 8; row++) {
       boardArray.add(new ArrayList<>());
-      ChessUtils.EChessColor colorAcc = (row + 1) % 2 == 0 ? EChessColor.BLACK : EChessColor.WHITE;
+      ChessUtils.EChessColor colorAcc = (row + 1) % 2 == 0 ? BLACK : WHITE;
       for (int col = 0; col < 8; col++) {
         IChessSquare square = new ChessSquare(colorAcc, col, (8 - 1) - row);
         IChessPiece pieceToPlace = ChessUtils.getStartPieceForSquare(square);
@@ -138,21 +142,37 @@ public class ChessBoard implements IChessBoard {
         if (this.chessBoard.get(row).get(col).hasPiece()) {
           IChessPiece attackingPiece = this.chessBoard.get(row).get(col).getPiece();
           if (attackingPiece.getColor() == attackingColor) {
-            if (attackingPiece.getPieceType() != EChessPieceType.PAWN
-                && attackingPiece.getPieceType() != EChessPieceType.KING) {
+            if (attackingPiece.getPieceType() != PAWN) {
               squares.addAll(attackingPiece.possibleMoves(this));
-            } else if (attackingPiece.getPieceType() == EChessPieceType.PAWN) {
-              Pawn attacker = (Pawn) attackingPiece;
-              squares.addAll(attacker.possibleCaptures(this));
-            } else if (attackingPiece.getPieceType() == EChessPieceType.KING) {
-              King attacker = (King) attackingPiece;
-              squares.addAll(attacker.possibleCaptures(this));
+            } else if (attackingPiece.getPieceType() == PAWN) {
+              squares.addAll(((Pawn)attackingPiece).possibleCaptures(this));
             }
           }
         }
       }
     }
     return squares;
+  }
+
+  // TODO: Implement
+  @Override
+  public boolean WhiteCastleKingSide() {
+    return false;
+  }
+
+  @Override
+  public boolean WhiteCastleQueenSide() {
+    return false;
+  }
+
+  @Override
+  public boolean BlackCastleKingSide() {
+    return false;
+  }
+
+  @Override
+  public boolean BlackCastleQueenSide() {
+    return false;
   }
 
 

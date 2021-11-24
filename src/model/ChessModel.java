@@ -1,5 +1,7 @@
 package model;
 
+import static model.utility.ChessUtils.EChessColor.WHITE;
+
 import java.util.ArrayList;
 import java.util.List;
 import model.chessboard.ChessBoard;
@@ -40,7 +42,7 @@ public class ChessModel implements IChessModel {
    * color.
    */
   public ChessModel() {
-    this(new ChessBoard(), ChessUtils.EChessColor.WHITE);
+    this(new ChessBoard(), WHITE);
   }
 
   @Override

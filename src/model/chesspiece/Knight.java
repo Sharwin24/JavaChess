@@ -1,5 +1,7 @@
 package model.chesspiece;
 
+import static model.utility.ChessUtils.EChessPieceType.KNIGHT;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -65,7 +67,7 @@ public class Knight extends ADiscreteChessPiece {
 
   @Override
   public EChessPieceType getPieceType() {
-    return EChessPieceType.KNIGHT;
+    return KNIGHT;
   }
 
   @Override

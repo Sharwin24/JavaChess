@@ -1,5 +1,7 @@
 package model.chesspiece;
 
+import static model.utility.ChessUtils.EChessPieceType.BISHOP;
+
 import java.util.List;
 import model.chessboard.IChessBoard;
 import model.chessboard.IChessSquare;
@@ -33,7 +35,7 @@ public class Bishop extends AChessPiece {
 
   @Override
   public EChessPieceType getPieceType() {
-    return EChessPieceType.BISHOP;
+    return BISHOP;
   }
 
   @Override

@@ -1,5 +1,7 @@
 package model.chesspiece;
 
+import static model.utility.ChessUtils.EChessPieceType.*;
+
 import java.util.List;
 import model.chessboard.IChessBoard;
 import model.chessboard.IChessSquare;
@@ -63,19 +65,14 @@ public class King extends ADiscreteChessPiece {
     // (+1,-1) RightDown
     // (-1,+1) LeftUp
     // (-1,-1) LeftDown
-    // (-2,0) WhiteLongCastle
-    // (2,0) WhiteShortCastle
-    return null;
-  }
-
-  @Override
-  public List<IChessSquare> possibleCaptures(IChessBoard chessBoard) {
+    // (-2,0) WhiteLongCastle or BlackShortCastle
+    // (2,0) WhiteShortCastle or BlackLongCastle
     return null;
   }
 
   @Override
   public EChessPieceType getPieceType() {
-    return EChessPieceType.KING;
+    return KING;
   }
 
   @Override
