@@ -175,7 +175,6 @@ public class ChessBoard implements IChessBoard {
     return false;
   }
 
-
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -193,7 +192,15 @@ public class ChessBoard implements IChessBoard {
         if (this.getSquare(c, r) != square) {
           return false;
         }
-      }
+        if (this.getSquare(c,r).hasPiece() && !square.hasPiece()) {
+          return false;
+        }
+        if (this.getSquare(c,r).hasPiece() && square.hasPiece()) {
+          if(this.getSquare(c,r).getPiece() != square.getPiece()) {
+            return false;
+          }
+        }
+      } 
     }
     return true;
   }
