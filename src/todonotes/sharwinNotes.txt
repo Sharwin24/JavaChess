@@ -3,6 +3,10 @@ Check for null in constructors and functions
 JavaDocs for chesspath
 Alter all chesspaths and possible moves to factor in checks
 
+Reconsider approach for determining if a piece is protected by another or not.
+Field of piece object that is manipulated by the board
+Method of the board class that iterates over all possible moves (pawn moves != captures)
+
 
 KingPath:
 Determines if a given file and rank delta from a starting square
