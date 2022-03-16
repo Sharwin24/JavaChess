@@ -27,7 +27,7 @@ public class KnightPath extends AChessPath {
   @Override
   public List<IChessSquare> getPathOrder() {
     List<IChessSquare> path = new ArrayList<>();
-    // Path is only destination square from start square
+    // Path is only destination square from start square for a knight
     try {
       IChessSquare destSquare =
           chessBoard.getSquare(this.startingSquare.getFile() + this.fileDelta,

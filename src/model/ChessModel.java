@@ -27,8 +27,8 @@ public class ChessModel implements IChessModel {
    * board is <i>not</i> necessarily a reset board.
    *
    * @param chessBoard An <code>IChessBoard</code> for the starting board
-   * @param playerTurn A <code>ChessUtils.EChessColor</code> representing the player's turn for the given
-   *                   starting board.
+   * @param playerTurn A <code>ChessUtils.EChessColor</code> representing the player's turn for the
+   *                   given starting board.
    */
   public ChessModel(IChessBoard chessBoard, ChessUtils.EChessColor playerTurn) {
     this.chessBoard = chessBoard;
@@ -47,7 +47,7 @@ public class ChessModel implements IChessModel {
 
   @Override
   public void playGame() {
-
+    // TODO: Init a reset chess board
   }
 
   @Override
@@ -88,7 +88,7 @@ public class ChessModel implements IChessModel {
   /**
    * given a valid move, returns the new state of the board, with <strong><i>swag</i></strong>
    *
-   * @param pieceToMove the piece to move
+   * @param pieceToMove       the piece to move
    * @param destinationSquare the square to move the given piece to
    * @return
    */

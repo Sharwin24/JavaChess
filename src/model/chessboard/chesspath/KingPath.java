@@ -29,7 +29,7 @@ public class KingPath extends AChessPath {
   @Override
   public List<IChessSquare> getPathOrder() {
     List<IChessSquare> path = new ArrayList<>();
-    if (!invalidPath() && Math.abs(fileDelta) == 1) {
+    if (!invalidPath() && Math.abs(fileDelta) == 1 && Math.abs(rankDelta) == 1) {
       try {
         path.add(chessBoard.getSquare(this.startingSquare.getFile() + fileDelta,
             this.startingSquare.getRank() + rankDelta));
